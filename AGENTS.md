@@ -116,12 +116,15 @@ This is a vibecoding template for AI-assisted development.
 src/
   components/ui/    # shadcn/ui primitives (do not modify without reason)
   features/<name>/  # feature slices: components/, api/, state/, types.ts
+  hooks/            # shared custom hooks
   lib/              # shared utilities
   test/             # test setup
 docs/
   outline.md        # scope lock — the single source of truth
   plan.md           # phased implementation plan
   decisions.md      # architecture decision log
+  prompts.md        # reusable prompts for AI tools
+  QUICKSTART.md     # setup + commands
   screenshots/      # UI inspiration images
   moodboard/        # visual direction assets
 ```

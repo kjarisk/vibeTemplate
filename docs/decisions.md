@@ -4,8 +4,8 @@ Keep this short: what we decided, and why.
 
 ## Decisions
 
-- YYYY-MM-DD: Chose shadcn/ui as default UI layer for speed + consistency.
-- YYYY-MM-DD: State strategy = TanStack Query (server) + Zustand (UI/client).
+- 2026-02-07: Chose shadcn/ui as default UI layer for speed + consistency.
+- 2026-02-07: State strategy = TanStack Query (server) + Zustand (UI/client).
 - YYYY-MM-DD: <Add decisions as they happen>
 
 ## UI system choice (per project)
