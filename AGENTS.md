@@ -6,6 +6,7 @@ This is a vibecoding template for AI-assisted development.
 
 1. Read `docs/outline.md` — this is the scope lock. Only build what is listed there.
 2. Read `docs/plan.md` — this is the phased implementation plan.
+3. Check `docs/screenshots/` and `docs/moodboard/` for visual references. If images are present, use them as inspiration for layout, styling, and visual direction. If the directories are empty, skip this step and use your best judgment.
 
 ---
 
@@ -130,9 +131,10 @@ docs/
 1. Read `docs/outline.md` and `docs/plan.md`.
 2. Propose the next single smallest task.
 3. Before coding: cite which exact bullet in the outline it supports.
-4. Implement without adding features not in the outline.
-5. After coding: run `npm run lint` and `npm run build` to verify.
-6. Suggest a checkpoint commit message.
+4. If the task involves UI, review `docs/screenshots/` and `docs/moodboard/` for visual direction. If empty, use your best judgment.
+5. Implement without adding features not in the outline.
+6. After coding: run `npm run lint` and `npm run build` to verify.
+7. Suggest a checkpoint commit message.
 
 ## Documentation discipline
 
