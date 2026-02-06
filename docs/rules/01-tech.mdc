@@ -1,0 +1,13 @@
+# Tech
+
+Default: React + Vite + TypeScript
+
+Styling: Tailwind CSS v4 (Vite plugin)
+
+State: (pick one) TanStack Query (data) + Zustand (UI) or "React-only"
+
+Testing: Vitest + Testing Library
+
+Lint/format: ESLint + Prettier
+
+Path aliases: `@/` → `src/`

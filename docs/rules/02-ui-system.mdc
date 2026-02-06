@@ -1,0 +1,9 @@
+# UI System
+
+UI system must be either:
+
+Option A: shadcn/ui components in src/components/ui/*
+
+Option B: Tailwind UI components in src/components/twui/*
+
+Never mix both in the same feature unless explicitly approved in decisions.md.
