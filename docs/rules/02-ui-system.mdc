@@ -1,9 +1,18 @@
 # UI System
 
-UI system must be either:
+## Component library
+- **shadcn/ui** — components live in `src/components/ui/`
+- Add via CLI: `npx shadcn@latest add <component>`
+- Modify freely — you own the code
 
-Option A: shadcn/ui components in src/components/ui/*
+## Custom components
+- Place in `src/components/` (not in `ui/`)
+- Compose from shadcn primitives when possible
 
-Option B: Tailwind UI components in src/components/twui/*
+## Styling rules
+- Use Tailwind classes only
+- No inline styles, no CSS modules
+- Use `cn()` helper for conditional classes
 
-Never mix both in the same feature unless explicitly approved in decisions.md.
+## Icons
+- lucide-react (included with shadcn)
