@@ -127,6 +127,10 @@ docs/
   QUICKSTART.md     # setup + commands
   screenshots/      # UI inspiration images
   moodboard/        # visual direction assets
+.opencode/
+  commands/         # custom slash commands (/lint, /test, /build, /new-feature, /review)
+  skills/           # agent skills (add-feature, add-component, add-route)
+opencode.json       # OpenCode configuration (instructions, formatters, MCP)
 ```
 
 ## Workflow
@@ -136,8 +140,28 @@ docs/
 3. Before coding: cite which exact bullet in the outline it supports.
 4. If the task involves UI, review `docs/screenshots/` and `docs/moodboard/` for visual direction. If empty, use your best judgment.
 5. Implement without adding features not in the outline.
-6. After coding: run `npm run lint` and `npm run build` to verify.
+6. After coding: run `/lint` and `/build` to verify (or `npm run lint` and `npm run build`).
 7. Suggest a checkpoint commit message.
+
+## OpenCode skills and commands
+
+This project includes reusable agent skills and custom commands via `.opencode/`.
+
+**Skills** (loaded on-demand via the `skill` tool):
+
+- `add-feature` — scaffold a new feature slice under `src/features/<name>/`
+- `add-component` — add a shadcn/ui component or create a custom reusable component
+- `add-route` — add React Router and configure a new route/page
+
+**Commands** (run via `/command-name` in OpenCode):
+
+- `/lint` — run linting and auto-fix issues
+- `/test` — run tests with coverage report
+- `/build` — type-check and build for production
+- `/new-feature <name>` — scaffold a new feature slice (uses the `add-feature` skill)
+- `/review` — review recent changes for quality issues
+
+When scaffolding new features, prefer using the `/new-feature` command or the `add-feature` skill to ensure consistent structure.
 
 ## Documentation discipline
 
