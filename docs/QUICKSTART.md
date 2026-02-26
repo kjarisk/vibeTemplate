@@ -31,6 +31,17 @@ npm i react-hook-form zod @hookform/resolvers
 npx shadcn@latest add <component>
 ```
 
+## Deploy
+
+Deploy to a Linode subdomain via rsync over SSH + Nginx.
+
+- Full guide: `docs/deploy.md`
+- AI-guided setup: run `/deploy` in OpenCode (walks through DNS, Nginx, SSH key, GitHub secrets, Certbot)
+
+Required GitHub secrets: `DEPLOY_KEY`, `LINODE_HOST`, `LINODE_USER`
+
+Once set up, deploys are automatic on every push to `main`.
+
 ## Path aliases
 
 Use `@/` to import from `src/`:

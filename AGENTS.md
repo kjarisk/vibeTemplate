@@ -107,7 +107,15 @@ This is a vibecoding template for AI-assisted development.
 - If a new task is added mid-session that was not in the plan, add it to `docs/plan.md` before starting it.
 - These files are the single source of truth for what has been done and what remains.
 
-### 8. Skills
+### 8. Deployment
+
+- Full deploy guide lives in `docs/deploy.md` — read it before setting up deployment for a new project.
+- To get AI-guided deployment setup, run `/deploy` in OpenCode. It will walk through DNS, Nginx, SSH key, GitHub secrets, code changes, and Certbot step by step.
+- Deployment model: GitHub Actions builds → rsync over SSH → Nginx serves static files. No PM2, no Docker.
+- `vite.config.ts` must have `base: '/'` for subdomain deploys (not `/appname/`).
+- Required GitHub secrets: `DEPLOY_KEY`, `LINODE_HOST`, `LINODE_USER`.
+
+### 9. Skills
 
 - Project-specific skills live in `.opencode/skills/` (committed, always available).
 - Third-party skills live in `.agents/skills/` (gitignored, installed locally per developer).
