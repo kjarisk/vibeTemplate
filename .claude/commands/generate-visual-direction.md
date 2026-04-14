@@ -4,6 +4,12 @@ description: Read moodboard and screenshot images and write docs/visual-directio
 
 Read the moodboard and screenshot images once, then write a `docs/visual-direction.md` summary that the agent can reference going forward — without re-reading images every session.
 
+**The two folders serve different purposes:**
+- `docs/moodboard/` — *feeling and direction*: color palettes, typography, abstract references, brand mood. Answers "what should this feel like?"
+- `docs/screenshots/` — *concrete UI reference*: app screenshots, competitor UIs, specific component patterns. Answers "what should this look like and how should it work?"
+
+Treat them accordingly during analysis — moodboard informs tone and aesthetic, screenshots inform layout and component decisions.
+
 ## Steps
 
 1. **Check for images**

@@ -13,7 +13,7 @@ const setupSteps = [
     command: '/generate-visual-direction',
     title: 'Set visual direction',
     description:
-      'Drop images into docs/moodboard/ or docs/screenshots/, then run this command to extract a reusable design brief.',
+      'docs/moodboard/ — feeling and tone (palettes, typography, abstract refs). docs/screenshots/ — concrete UI patterns (apps, layouts, components). Drop images in both, then run this command to generate a reusable design brief.',
   },
   {
     number: '03',
@@ -32,6 +32,17 @@ const setupSteps = [
 ]
 
 const changelog = [
+  {
+    version: '0.6.4',
+    date: '2026-04-14',
+    added: [],
+    changed: [
+      'moodboard/ vs screenshots/ distinction now clearly explained — moodboard = feeling/tone, screenshots = concrete UI patterns',
+      'Startup page step 02 and /generate-visual-direction updated to reflect the difference',
+    ],
+    fixed: [],
+    removed: [],
+  },
   {
     version: '0.6.3',
     date: '2026-04-14',

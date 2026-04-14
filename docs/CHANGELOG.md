@@ -7,6 +7,16 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.6.4] 2026-04-14 — Clarify moodboard vs screenshots distinction
+
+### Changed
+- `docs/moodboard/README.md` — explains it's for feeling/tone (palettes, typography, abstract refs), not UI
+- `docs/screenshots/README.md` — explains it's for concrete UI reference (app screens, layouts, components)
+- Startup page step 02 — now explains both folders and their difference
+- `/generate-visual-direction` command — treats the two folders differently during analysis
+
+---
+
 ## [0.6.3] 2026-04-14 — Startup page and docs fully in sync
 
 ### Fixed
