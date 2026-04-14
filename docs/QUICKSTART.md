@@ -96,6 +96,8 @@ npm run preview        # Preview production build locally
 | Command | What it does |
 |---------|-------------|
 | `/setup` | Interactive project bootstrap |
+| `/audit-template` | 12-category health check with scored report |
+| `/bump-version` | Changelog + App.tsx + package.json + tag + push |
 | `/lint` | Run ESLint + auto-fix |
 | `/test` | Run tests with coverage |
 | `/build` | Type-check and production build |
@@ -177,4 +179,4 @@ Or edit `.mcp.json` directly.
 - **Update the docs** — check off `docs/plan.md` and `docs/outline.md` after each completed task
 
 See `docs/learning.md` for a comprehensive guide to all Claude Code features.
-See `docs/getting-started.md` for the step-by-step first-day walkthrough.
+See `docs/getting-started.md` for the step-by-step first-day walkthrough (this file is deleted by `/setup` on new projects).

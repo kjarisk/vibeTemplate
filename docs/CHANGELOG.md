@@ -7,6 +7,15 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.6.3] 2026-04-14 — Startup page and docs fully in sync
+
+### Fixed
+- "How it works" tab: added `/audit-template` and `/bump-version` to custom commands list
+- "How it works" tab: added `docs/CHANGELOG.md`, `docs/skills.md`, `docs/getting-started.md` to docs map
+- `docs/QUICKSTART.md`: added `/audit-template` and `/bump-version` to commands table
+
+---
+
 ## [0.6.2] 2026-04-14 — Post-setup cleanliness check in /audit-template
 
 ### Added

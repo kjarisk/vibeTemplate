@@ -33,6 +33,17 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.6.3',
+    date: '2026-04-14',
+    added: [],
+    changed: [],
+    fixed: [
+      '"How it works" tab now lists /audit-template, /bump-version, and all docs including CHANGELOG.md',
+      'QUICKSTART.md commands table now complete',
+    ],
+    removed: [],
+  },
+  {
     version: '0.6.2',
     date: '2026-04-14',
     added: [
@@ -97,6 +108,8 @@ const stack = [
 
 const customCommands = [
   { cmd: '/setup', desc: 'Interactive project bootstrap' },
+  { cmd: '/audit-template', desc: '12-category health check + scored report' },
+  { cmd: '/bump-version', desc: 'Changelog + tag + push in one pass' },
   { cmd: '/new-feature', desc: 'Scaffold feature slice' },
   { cmd: '/build', desc: 'Type-check + production build' },
   { cmd: '/lint', desc: 'ESLint auto-fix' },
@@ -123,9 +136,12 @@ const docs = [
   { file: 'docs/outline.md', purpose: 'Scope lock — what to build' },
   { file: 'docs/plan.md', purpose: 'Phased implementation plan' },
   { file: 'docs/decisions.md', purpose: 'Architecture decision log' },
+  { file: 'docs/CHANGELOG.md', purpose: 'Version history + release notes' },
   { file: 'docs/visual-direction.md', purpose: 'Generated design brief' },
   { file: 'docs/deploy.md', purpose: 'Deployment guide (3 options)' },
+  { file: 'docs/skills.md', purpose: 'Skills reference + install commands' },
   { file: 'docs/learning.md', purpose: 'Claude Code features reference' },
+  { file: 'docs/getting-started.md', purpose: 'First-day walkthrough (deleted by /setup)' },
 ]
 
 function App() {
