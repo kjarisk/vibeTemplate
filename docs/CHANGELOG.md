@@ -7,6 +7,22 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.6.0] 2026-04-14 — Versioning, release workflow, audit + setup improvements
+
+### Added
+- `/bump-version` command — updates CHANGELOG, App.tsx, package.json, commits, tags, and pushes in one pass
+- Changelog sync check in `/audit-template` — warns when CHANGELOG.md and App.tsx changelog array are out of sync
+- `docs/CHANGELOG.md` and "What's new" tab on startup page
+
+### Changed
+- `/setup` Step A: backend/game skill installs now do a live `ctx7 skills search` instead of hardcoded unverified registry paths
+- `docs/skills.md`: verified skills clearly labelled, backend/game skills marked as search-live
+
+### Fixed
+- Unverified skill registry paths removed from `/setup` (backend-architect, game-development etc. don't exist)
+
+---
+
 ## [0.5.0] 2026-04-14 — Full Claude Code migration + dependency refresh
 
 ### Added

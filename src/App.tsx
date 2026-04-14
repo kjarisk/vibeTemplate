@@ -33,6 +33,19 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.6.0',
+    date: '2026-04-14',
+    added: [
+      '/bump-version command — CHANGELOG + App.tsx + package.json + tag + push in one pass',
+      'Changelog sync check in /audit-template',
+    ],
+    changed: [
+      '/setup backend/game skills now search live registry instead of hardcoded unverified paths',
+    ],
+    fixed: ['Unverified skill registry paths removed from /setup'],
+    removed: [],
+  },
+  {
     version: '0.5.0',
     date: '2026-04-14',
     added: [

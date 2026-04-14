@@ -124,6 +124,7 @@ npm test -- --run
 - [ ] Build passes with zero errors
 - [ ] Lint passes (or only warnings, no errors)
 - [ ] All tests pass
+- [ ] **Changelog sync** — check whether `docs/CHANGELOG.md` has real release entries beyond the initial scaffold (any `## [` heading other than `## [Unreleased]`) and whether the `changelog` array in `src/App.tsx` is non-empty. If one side has entries and the other does not, flag as a warning. Fix: either populate `changelog` in `src/App.tsx` to mirror the CHANGELOG.md releases, or add a `## [Unreleased]`-only scaffold entry to CHANGELOG.md if no releases exist yet.
 
 ---
 

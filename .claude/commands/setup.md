@@ -57,35 +57,48 @@ _e.g. "Freelance designers who need quick invoice tracking without complex accou
 
 Based on the **app type** answer, run the appropriate skill installs:
 
-**`frontend` or `fullstack`:**
+**All types — always install first:**
 ```bash
 npx ctx7 skills install /anthropics/skills frontend-design --universal -y
+```
+
+**`frontend` or `mobile` — also install (verified):**
+```bash
 npx ctx7 skills install /anthropics/skills canvas-design --universal -y
 npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```
 
-**`backend` or `fullstack`:**
+**`backend` or `fullstack` — search live before installing:**
+
+Do NOT hardcode backend skill paths — the registry changes. Instead:
+1. Run the searches below and show the user the results:
 ```bash
-npx ctx7 skills install /davila7/claude-code-templates backend-architect --universal -y
-npx ctx7 skills install /affaan-m/everything-claude-code backend-patterns --universal -y
+npx ctx7 skills search backend
+npx ctx7 skills search api
+```
+2. Present the top results to the user (name, registry path, star rating, description).
+3. Ask: "Which of these would you like to install? I'll install them one at a time."
+4. Install only what the user confirms, one at a time:
+```bash
+npx ctx7 skills install /org/repo <skill-name> --universal -y
 ```
 
-**`game`:**
+**`game` — search live before installing:**
+
+Do NOT hardcode game skill paths — the registry changes. Instead:
+1. Run the search below and show the user the results:
 ```bash
-npx ctx7 skills install /davila7/claude-code-templates game-development --universal -y
-npx ctx7 skills install /davila7/claude-code-templates game-art --universal -y
+npx ctx7 skills search game
+```
+2. Also install the verified interaction skill:
+```bash
 npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```
-
-**`mobile`:**
+3. Present the game skill search results to the user.
+4. Ask: "Which of these would you like to install? I'll install them one at a time."
+5. Install only what the user confirms, one at a time:
 ```bash
-npx ctx7 skills install /anthropics/skills frontend-design --universal -y
-npx ctx7 skills install /wshobson/agents interaction-design --universal -y
-```
-
-**All types — always install:**
-```bash
-npx ctx7 skills install /anthropics/skills frontend-design --universal -y
+npx ctx7 skills install /org/repo <skill-name> --universal -y
 ```
 
 After installing, tell the user which skills were installed and what they do.

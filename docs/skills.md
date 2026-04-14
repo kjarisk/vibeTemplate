@@ -46,6 +46,8 @@ Or run `/setup-skills` in Claude Code for interactive guided install.
 
 These skills work well for React + Vite + Tailwind + shadcn/ui projects:
 
+### Verified (confirmed to exist in the registry)
+
 | Skill | Registry | Stars | What it does |
 |-------|----------|-------|-------------|
 | `frontend-design` | `/anthropics/skills` | ★★★★ | Production-grade UI with bold aesthetic direction, avoids generic AI aesthetics |
@@ -62,6 +64,25 @@ npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```
 
 Or run `/setup-skills` in Claude Code for interactive guided install.
+
+### Backend, API, and game skills — search live
+
+Backend and game skill paths are **not hardcoded** here because the registry changes and unverified paths may not exist. Always search first:
+
+```bash
+# For backend / fullstack projects
+npx ctx7 skills search backend
+npx ctx7 skills search api
+
+# For game projects
+npx ctx7 skills search game
+```
+
+Review the results, then install only confirmed skills one at a time:
+
+```bash
+npx ctx7 skills install /org/repo <skill-name> --universal -y
+```
 
 > **Note:** The registry is community-maintained. Use `npx ctx7 skills search <keyword>` to find current options. Prefer skills from `/anthropics/skills` (Trust: High, verified source).
 
