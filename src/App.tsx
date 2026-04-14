@@ -101,7 +101,10 @@ const changelog = [
       'Startup page redesigned — correct steps, ambient glow, 3-tab layout',
       'Lazy loading strategy — docs read on demand, saves ~300 tokens/session',
     ],
-    fixed: ['tsconfig baseUrl deprecation (TS 6)', 'settings.json hook had hardcoded machine path'],
+    fixed: [
+      'tsconfig baseUrl deprecation (TS 6)',
+      'settings.json hook had hardcoded machine path',
+    ],
     removed: ['AGENTS.md + opencode.json — wrong tool, migrated to .claude/'],
   },
 ]
@@ -152,7 +155,10 @@ const docs = [
   { file: 'docs/deploy.md', purpose: 'Deployment guide (3 options)' },
   { file: 'docs/skills.md', purpose: 'Skills reference + install commands' },
   { file: 'docs/learning.md', purpose: 'Claude Code features reference' },
-  { file: 'docs/getting-started.md', purpose: 'First-day walkthrough (deleted by /setup)' },
+  {
+    file: 'docs/getting-started.md',
+    purpose: 'First-day walkthrough (deleted by /setup)',
+  },
 ]
 
 function App() {
