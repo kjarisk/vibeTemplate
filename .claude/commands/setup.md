@@ -271,6 +271,50 @@ export default App
 
 The developer will replace this shell as they build their first feature.
 
+**`src/App.test.tsx`** — replace the entire file. The existing test checks for a heading that no longer exists after App.tsx is replaced:
+
+```tsx
+/// <reference types="vitest/globals" />
+import { render, screen } from '@testing-library/react'
+import App from './App'
+
+describe('App', () => {
+  it('renders without crashing', () => {
+    render(<App />)
+    expect(document.body).toBeTruthy()
+  })
+})
+```
+
+**`README.md`** — replace the entire file with a project-specific README:
+
+```markdown
+# [project name]
+
+[one-sentence goal from the user's answer]
+
+## Development
+
+```bash
+npm install
+npm run dev       # localhost:5173
+npm run build     # production build
+npm test          # run tests
+```
+
+## Stack
+
+React 19 · Vite 8 · TypeScript 6 · Tailwind CSS v4 · shadcn/ui · TanStack Query · Zustand
+
+## Docs
+
+- `docs/outline.md` — scope lock
+- `docs/plan.md` — build phases
+- `docs/decisions.md` — decision log
+```
+
+**`docs/getting-started.md`** — delete this file entirely. It is a guide for setting up this template, which has already been done. It has no purpose in a real project.
+
 ---
 
 ### Step F — Final message to user

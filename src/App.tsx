@@ -33,6 +33,16 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.6.1',
+    date: '2026-04-14',
+    added: [],
+    changed: [],
+    fixed: [
+      '/setup now replaces README.md, App.test.tsx, and deletes getting-started.md — no template noise left in new projects',
+    ],
+    removed: [],
+  },
+  {
     version: '0.6.0',
     date: '2026-04-14',
     added: [

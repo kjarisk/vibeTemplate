@@ -7,6 +7,14 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.6.1] 2026-04-14 — Complete template noise removal on /setup
+
+### Fixed
+- `/setup` now also replaces `README.md`, `src/App.test.tsx`, and deletes `docs/getting-started.md` — these carried template identity into new projects
+- `src/App.test.tsx` was testing for a heading that no longer exists after App.tsx is replaced
+
+---
+
 ## [0.6.0] 2026-04-14 — Versioning, release workflow, audit + setup improvements
 
 ### Added
