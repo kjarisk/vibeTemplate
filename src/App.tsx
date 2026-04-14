@@ -33,6 +33,16 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.6.2',
+    date: '2026-04-14',
+    added: [
+      '/audit-template section 11: post-setup cleanliness check — catches any template fingerprints that survived /setup',
+    ],
+    changed: [],
+    fixed: [],
+    removed: [],
+  },
+  {
     version: '0.6.1',
     date: '2026-04-14',
     added: [],

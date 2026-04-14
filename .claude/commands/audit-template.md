@@ -144,7 +144,26 @@ For any outdated packages, categorize them:
 
 ---
 
-## 11. Documentation currency
+## 11. Post-setup cleanliness
+
+Check whether `/setup` ran completely and left no template fingerprints behind.
+
+Read the following and check:
+
+- [ ] `src/App.tsx` — does NOT contain "Vibecoding Template", "setupSteps", "How it works", or `changelog` array with template entries. If it does, `/setup` Step E was not completed.
+- [ ] `src/App.test.tsx` — does NOT test for `'ready to build'` heading. If it does, `/setup` Step E was not completed.
+- [ ] `README.md` — does NOT contain "Vibecoding Template" or "degit YOUR_USER/vibecoding-template". If it does, `/setup` Step E was not completed.
+- [ ] `docs/getting-started.md` — does NOT exist. If it does, `/setup` Step E was not completed.
+- [ ] `index.html` `<title>` — is NOT "Vibecoding Template". If it is, `/setup` Step E was not completed.
+- [ ] `package.json` `name` — is NOT "vibecodetemp". If it is, `/setup` Step E was not completed.
+- [ ] `docs/outline.md` — does NOT contain "_Run `/setup` to define this._". If it does, `/setup` was never run at all.
+- [ ] `docs/decisions.md` — does NOT contain template stack decisions (shadcn/ui choice, TanStack Query strategy). If it does, `/setup` Step D was not completed.
+
+If any of these fail: list which steps were missed and tell the user to re-run `/setup` or manually complete the flagged steps.
+
+---
+
+## 12. Documentation currency
 
 Check these files exist and are up to date:
 
@@ -163,7 +182,7 @@ After running all checks, output a report in this format:
 ```
 ## Template Audit Report
 
-### Score: XX/11
+### Score: XX/12
 
 ### ✅ Passing
 - [list items that pass]

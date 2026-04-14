@@ -7,6 +7,13 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.6.2] 2026-04-14 — Post-setup cleanliness check in /audit-template
+
+### Added
+- Section 11 in `/audit-template`: post-setup cleanliness — verifies `/setup` ran completely and no template fingerprints survived into a new project (App.tsx, test, README, index.html, package name, decisions, getting-started.md)
+
+---
+
 ## [0.6.1] 2026-04-14 — Complete template noise removal on /setup
 
 ### Fixed
