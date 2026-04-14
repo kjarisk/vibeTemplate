@@ -1,14 +1,133 @@
-# Deploy Guide — Linode Subdomain via rsync over SSH
+# Deploy Guide
 
-This is the reference guide for deploying any app from this template to a Linux VPS (Linode or similar) as a subdomain.
+This template supports three deployment targets. Choose the one that fits your project.
 
-For the AI-assisted version of this guide, run `/deploy` in OpenCode.
+| Option | Best for | Cost | Complexity |
+|--------|----------|------|------------|
+| **GitHub Pages** | Open-source, portfolios | Free | Low |
+| **Vercel** | Teams, quick iteration | Free tier | Very low |
+| **Linode VPS** | Full control, custom setup | ~$5/mo | Medium |
+
+For AI-guided deployment, run `/deploy` in Claude Code.
 
 ---
 
-## Overview
+## GitHub Pages
 
-The deployment model is:
+Free static hosting, perfect for open-source projects and portfolios.
+
+### One-time setup
+
+**1. `vite.config.ts`** — set `base` to your repo name if using a project site (not a custom domain):
+
+```ts
+base: '/repo-name/',
+```
+
+For a custom domain, keep `base: '/'`.
+
+**2. `.github/workflows/deploy.yml`** — create this file:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
+```
+
+**3. Enable GitHub Pages in repo settings:**
+- Go to your repo → Settings → Pages
+- Under "Source", select **GitHub Actions**
+
+**4. Push to `main`** — the Action deploys automatically.
+
+### Custom domain (optional)
+
+1. Add a `CNAME` file in `public/` containing your domain (e.g. `myapp.yourdomain.com`)
+2. In DNS: add a CNAME record pointing to `username.github.io`
+3. In GitHub Pages settings: enter the custom domain, enable "Enforce HTTPS"
+
+### Subsequent deploys
+
+Just push to `main`. GitHub Actions handles the rest.
+
+---
+
+## Vercel
+
+Zero-config deployment with the best developer experience.
+
+### Option A — Dashboard (recommended)
+
+1. Go to [vercel.com](https://vercel.com) → New Project
+2. Import your GitHub repository
+3. Framework preset: **Vite** (auto-detected)
+4. Build command: `npm run build`
+5. Output directory: `dist`
+6. Click **Deploy**
+
+`vite.config.ts` needs `base: '/'` (default).
+
+### Option B — CLI
+
+```bash
+npm i -g vercel
+vercel
+```
+
+Follow the prompts. Vercel auto-detects Vite and configures everything.
+
+### Custom domain
+
+Vercel dashboard → Project → Settings → Domains → Add Domain.
+
+### Subsequent deploys
+
+Every push to `main` deploys automatically via Vercel's GitHub integration. Preview deployments are created for every PR.
+
+---
+
+## Linode VPS (rsync over SSH + Nginx)
+
+Full control deployment to your own Linux server.
+
+### Overview
 
 1. GitHub Actions builds the app (`npm run build`)
 2. rsync copies `dist/` to the server over SSH
@@ -17,27 +136,18 @@ The deployment model is:
 
 No Node.js process, no PM2, no Docker — just static files behind Nginx.
 
----
+### One-time setup
 
-## One-time setup
-
-### 1. DNS — add an A record
+#### 1. DNS — add an A record
 
 In your DNS provider (Squarespace, Cloudflare, Namecheap, etc.):
 
-| Field             | Value                                                            |
-| ----------------- | ---------------------------------------------------------------- |
-| Type              | A                                                                |
-| Host / Name       | subdomain prefix only (e.g. `myapp`, not `myapp.yourdomain.com`) |
-| Value / Points to | your server IP address                                           |
-| TTL               | default (or 3600)                                                |
-
-**Squarespace steps:**
-
-1. squarespace.com → account → Domains
-2. Click your domain → DNS Settings
-3. Scroll to Custom Records → Add Record
-4. Fill in the fields above → Save
+| Field | Value |
+|-------|-------|
+| Type | A |
+| Host / Name | subdomain prefix only (e.g. `myapp`) |
+| Value / Points to | your server IP address |
+| TTL | default or 3600 |
 
 Verify propagation (can take 15–60 min):
 
@@ -46,15 +156,12 @@ dig myapp.yourdomain.com +short
 # should return your server IP
 ```
 
----
+#### 2. Server — Nginx config
 
-### 2. Server — Nginx config
-
-SSH into your server and run:
+SSH into your server:
 
 ```bash
 mkdir -p /var/www/myapp.yourdomain.com
-
 nano /etc/nginx/sites-available/myapp.yourdomain.com
 ```
 
@@ -85,11 +192,9 @@ ln -s /etc/nginx/sites-available/myapp.yourdomain.com /etc/nginx/sites-enabled/
 nginx -t && systemctl reload nginx
 ```
 
----
+#### 3. SSH deploy key
 
-### 3. Server — SSH deploy key
-
-Generate a dedicated key for GitHub Actions (do this on the server):
+Generate a dedicated key for GitHub Actions (on the server):
 
 ```bash
 ssh-keygen -t ed25519 -C "github-action-deploy" -f /root/.ssh/deploy_key -N ""
@@ -97,35 +202,27 @@ cat /root/.ssh/deploy_key.pub >> /root/.ssh/authorized_keys
 cat /root/.ssh/deploy_key
 ```
 
-Copy the entire output of the last command — this is the private key you'll paste into GitHub.
+Copy the entire private key output.
 
----
+#### 4. GitHub secrets
 
-### 4. GitHub — repository secrets
+Go to repo → Settings → Secrets and variables → Actions → New repository secret:
 
-Go to your repo → Settings → Secrets and variables → Actions → New repository secret.
+| Secret | Value |
+|--------|-------|
+| `DEPLOY_KEY` | Private key from step 3 |
+| `LINODE_HOST` | Full subdomain: `myapp.yourdomain.com` |
+| `LINODE_USER` | SSH username (e.g. `root`) |
 
-Add these three:
+#### 5. Code changes
 
-| Secret name   | Value                                                                    |
-| ------------- | ------------------------------------------------------------------------ |
-| `DEPLOY_KEY`  | The private key from step 3 (full content including header/footer lines) |
-| `LINODE_HOST` | Full subdomain: `myapp.yourdomain.com`                                   |
-| `LINODE_USER` | Your SSH username (e.g. `root`)                                          |
-
----
-
-### 5. Code — two file changes
-
-**`vite.config.ts`** — set base to `/`:
+**`vite.config.ts`** — set `base: '/'`:
 
 ```ts
 base: '/',
 ```
 
-(When deploying to a subdomain you're at the root, not a subfolder path like `/myapp/`.)
-
-**`.github/workflows/deploy.yml`** — replace with:
+**`.github/workflows/deploy.yml`**:
 
 ```yaml
 name: Deploy to Linode
@@ -140,15 +237,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - run: npm ci
       - run: npm run build
-
       - name: Deploy via rsync
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
@@ -165,65 +259,26 @@ jobs:
             "$LINODE_USER@$LINODE_HOST:/var/www/$LINODE_HOST/"
 ```
 
-Commit and push to `main`. The Action will run automatically.
+Commit and push to `main`. The Action runs automatically.
 
----
-
-### 6. SSL — Certbot (after DNS propagates)
-
-Once `dig myapp.yourdomain.com +short` returns your server IP:
+#### 6. SSL — Certbot (after DNS propagates)
 
 ```bash
 certbot --nginx -d myapp.yourdomain.com
 ```
 
-Certbot updates your Nginx config automatically and sets up auto-renewal.
+Certbot updates the Nginx config and sets up auto-renewal.
 
----
+### Subsequent deploys
 
-## Subsequent deploys
+Just push to `main`. The Action builds and deploys within ~1 minute.
 
-Just push to `main`. The GitHub Action handles everything:
+### Troubleshooting
 
-- Builds the app
-- rsyncs `dist/` to `/var/www/myapp.yourdomain.com/`
-- The live site updates within ~1 minute
+**`DNS_PROBE_FINISHED_NXDOMAIN`** — DNS hasn't propagated. Run `dig myapp.yourdomain.com +short` and wait.
 
-You can also trigger manually from the Actions tab → "Run workflow".
+**GitHub Action fails at rsync** — Check the three secrets are set, the public key is in `authorized_keys`, and the web root directory exists.
 
----
+**Nginx 404 after deploy** — Run `ls /var/www/myapp.yourdomain.com/` to confirm files deployed. Check `nginx -t`.
 
-## Troubleshooting
-
-**`DNS_PROBE_FINISHED_NXDOMAIN` in browser**
-DNS hasn't propagated yet. Run `dig myapp.yourdomain.com +short` — if it returns nothing, wait and retry.
-
-**GitHub Action fails at rsync step**
-
-- Check that all three secrets (`DEPLOY_KEY`, `LINODE_HOST`, `LINODE_USER`) are set correctly
-- Confirm the public key was added to `~/.ssh/authorized_keys` on the server
-- Confirm `/var/www/myapp.yourdomain.com/` exists on the server
-
-**Nginx returns 404 after deploy**
-
-- Run `ls /var/www/myapp.yourdomain.com/` — if empty, rsync didn't run yet
-- Run `nginx -t` to check for config errors
-- Run `systemctl status nginx` to confirm it's running
-
-**SSL cert fails**
-
-- DNS must resolve first — Certbot can't issue a cert until the domain points to the server
-- Run `dig myapp.yourdomain.com +short` and confirm it returns your IP before running Certbot
-
-**Server already hosts other apps**
-No conflict. Each subdomain gets its own `server_name` block in Nginx. They coexist fine.
-PM2 is not involved — this app is static, not a Node.js process.
-
----
-
-## Notes
-
-- Web root is always `/var/www/FULL_SUBDOMAIN/` — e.g. `/var/www/myapp.yourdomain.com/`
-- The deploy key lives at `/root/.ssh/deploy_key` on the server — separate from your personal SSH key
-- `vite.config.ts` must have `base: '/'` for subdomain deploys (not `/appname/`)
-- For the AI-guided version of this entire setup, run `/deploy` in OpenCode
+**SSL cert fails** — DNS must resolve before Certbot can issue a cert.

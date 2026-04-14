@@ -1,114 +1,383 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-const steps = [
+const setupSteps = [
   {
-    number: '1',
-    title: 'Define your scope',
-    description: (
-      <>
-        Edit{' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
-          docs/outline.md
-        </code>{' '}
-        with your goal, flows, and data model.
-      </>
-    ),
+    number: '01',
+    command: '/setup',
+    title: 'Configure your project',
+    description:
+      'Define scope, target user, core flows, non-goals, and deployment target. Fills outline.md and plan.md.',
   },
   {
-    number: '2',
-    title: 'Plan your slices',
-    description: (
-      <>
-        Break work into phases in{' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
-          docs/plan.md
-        </code>
-        .
-      </>
-    ),
+    number: '02',
+    command: '/generate-visual-direction',
+    title: 'Set visual direction',
+    description:
+      'Drop images into docs/moodboard/ or docs/screenshots/, then run this command to extract a reusable design brief.',
   },
   {
-    number: '3',
-    title: 'Add visual references',
-    description: (
-      <>
-        Drop screenshots and moodboard images into{' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
-          docs/screenshots/
-        </code>{' '}
-        and{' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
-          docs/moodboard/
-        </code>
-        .
-      </>
-    ),
+    number: '03',
+    command: '/setup-skills',
+    title: 'Install design skills',
+    description:
+      'Install recommended Context7 skills for UI/UX quality: frontend-design, canvas-design, interaction-design.',
   },
   {
-    number: '4',
+    number: '04',
+    command: null,
     title: 'Start building',
     description:
-      'Ask your AI agent to read the outline and propose the first task.',
+      'Ask Claude: "Read docs/outline.md and propose the next single smallest task." Commit after each slice.',
   },
+]
+
+const changelog = [
+  {
+    version: '0.5.0',
+    date: '2026-04-14',
+    added: [
+      '/setup — one-message project bootstrap with domain-aware skill install',
+      '/audit-template — 11-category health check, token efficiency + package currency',
+      'docs/getting-started.md + docs/CHANGELOG.md',
+      'accent-glow CSS variable — gradient animation now visible',
+    ],
+    changed: [
+      'All packages updated to latest majors (vite 8, TypeScript 6, eslint 10)',
+      'Startup page redesigned — correct steps, ambient glow, 3-tab layout',
+      'Lazy loading strategy — docs read on demand, saves ~300 tokens/session',
+    ],
+    fixed: ['tsconfig baseUrl deprecation (TS 6)', 'settings.json hook had hardcoded machine path'],
+    removed: ['AGENTS.md + opencode.json — wrong tool, migrated to .claude/'],
+  },
+]
+
+const stack = [
+  { label: 'React 19', note: 'ref as prop, use(), useOptimistic()' },
+  { label: 'Vite 8', note: 'dev server + production build' },
+  { label: 'TypeScript 6', note: 'strict mode, erasableSyntaxOnly' },
+  { label: 'Tailwind CSS v4', note: 'CSS variables, no config file' },
+  { label: 'shadcn/ui', note: 'new-york style, composable primitives' },
+  { label: 'TanStack Query v5', note: 'server state: fetch, cache, mutations' },
+  { label: 'Zustand v5', note: 'UI state: dialogs, filters, selections' },
+  { label: 'Vitest 4', note: 'unit + integration tests' },
+]
+
+const customCommands = [
+  { cmd: '/setup', desc: 'Interactive project bootstrap' },
+  { cmd: '/new-feature', desc: 'Scaffold feature slice' },
+  { cmd: '/build', desc: 'Type-check + production build' },
+  { cmd: '/lint', desc: 'ESLint auto-fix' },
+  { cmd: '/test', desc: 'Tests with coverage' },
+  { cmd: '/review', desc: 'Code quality + scope check' },
+  { cmd: '/deploy', desc: 'Guided deployment setup' },
+  { cmd: '/setup-skills', desc: 'Install Context7 design skills' },
+  {
+    cmd: '/generate-visual-direction',
+    desc: 'Extract design brief from images',
+  },
+]
+
+const builtinCommands = [
+  { cmd: '/compact', desc: 'Summarize conversation, free context' },
+  { cmd: '/rewind', desc: 'Roll back conversation + code' },
+  { cmd: '/branch', desc: 'Explore alternative approach' },
+  { cmd: '/model haiku', desc: 'Switch to fast model for simple tasks' },
+  { cmd: '/effort high', desc: 'Extended reasoning for hard problems' },
+]
+
+const docs = [
+  { file: 'CLAUDE.md', purpose: 'Agent rules — loaded every session' },
+  { file: 'docs/outline.md', purpose: 'Scope lock — what to build' },
+  { file: 'docs/plan.md', purpose: 'Phased implementation plan' },
+  { file: 'docs/decisions.md', purpose: 'Architecture decision log' },
+  { file: 'docs/visual-direction.md', purpose: 'Generated design brief' },
+  { file: 'docs/deploy.md', purpose: 'Deployment guide (3 options)' },
+  { file: 'docs/learning.md', purpose: 'Claude Code features reference' },
 ]
 
 function App() {
   return (
-    <div className="relative flex min-h-svh items-center justify-center overflow-hidden px-4">
-      {/* Background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--color-primary)/4%,transparent_50%),radial-gradient(ellipse_at_bottom_right,var(--color-chart-1)/6%,transparent_50%)]" />
+    <div className="relative min-h-svh overflow-hidden bg-background px-4 py-16">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-150 w-150 -translate-x-1/2 -translate-y-1/4 rounded-full bg-[radial-gradient(circle,var(--color-accent-glow)/18%,transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-100 w-100 rounded-full bg-[radial-gradient(circle,var(--color-accent-glow)/8%,transparent_70%)] blur-3xl" />
+      </div>
 
-      <div className="relative z-10 flex w-full max-w-lg flex-col items-center gap-10 py-16">
-        {/* Hero */}
-        <div className="flex flex-col items-center gap-4 text-center">
-          <div className="bg-primary/10 text-primary mb-2 inline-flex rounded-full px-3 py-1 text-xs font-medium tracking-wide uppercase">
+      <div className="relative z-10 mx-auto max-w-2xl">
+        {/* Header */}
+        <div className="mb-10 flex flex-col gap-3">
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/50 bg-muted/40 px-3 py-1 text-[11px] font-medium tracking-widest text-muted-foreground uppercase">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-(--color-accent-glow)" />
             Vibecoding Template
           </div>
-          <h1 className="animate-gradient bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_auto] bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
-            Ready to build
+          <h1 className="animate-gradient bg-linear-to-r from-foreground via-(--color-accent-glow) to-foreground bg-size-[200%_auto] bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl">
+            Ready to build.
           </h1>
-          <p className="text-muted-foreground max-w-md text-base leading-relaxed">
-            A guardrailed starter for AI-assisted React development. Define your
-            scope, plan your slices, and let the agent build incrementally.
+          <p className="max-w-md text-base text-muted-foreground leading-relaxed">
+            A guardrailed React starter for AI-assisted development. Scope lock,
+            vertical slices, design skills, and one-command deployment.
           </p>
         </div>
 
-        {/* Getting started card */}
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-lg">Get started</CardTitle>
-            <CardDescription>
-              Four steps to go from template to working app.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            {steps.map((step) => (
-              <div key={step.number} className="flex gap-4">
-                <div className="bg-primary text-primary-foreground flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold">
-                  {step.number}
+        {/* Tabs */}
+        <Tabs defaultValue="start">
+          <TabsList className="mb-6 h-9 w-full rounded-lg bg-muted/60 p-1">
+            <TabsTrigger
+              value="start"
+              className="flex-1 text-xs font-medium tracking-wide"
+            >
+              Get started
+            </TabsTrigger>
+            <TabsTrigger
+              value="guide"
+              className="flex-1 text-xs font-medium tracking-wide"
+            >
+              How it works
+            </TabsTrigger>
+            <TabsTrigger
+              value="changelog"
+              className="flex-1 text-xs font-medium tracking-wide"
+            >
+              What&apos;s new
+            </TabsTrigger>
+          </TabsList>
+
+          {/* ── Tab 1: Get started ── */}
+          <TabsContent value="start" className="mt-0">
+            <div className="flex flex-col gap-2">
+              {setupSteps.map((step) => (
+                <div
+                  key={step.number}
+                  className="group flex gap-4 rounded-xl border border-border/50 bg-card/60 px-5 py-4 backdrop-blur-sm transition-colors hover:border-border hover:bg-card/80"
+                >
+                  <div className="mt-0.5 w-7 shrink-0 font-mono text-xs font-semibold text-muted-foreground/50 tabular-nums">
+                    {step.number}
+                  </div>
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <div className="flex items-center gap-2.5">
+                      <p className="text-sm font-semibold leading-none text-foreground">
+                        {step.title}
+                      </p>
+                      {step.command && (
+                        <code className="rounded-md bg-accent-glow/10 px-1.5 py-0.5 font-mono text-[11px] font-medium text-(--color-accent-glow)">
+                          {step.command}
+                        </code>
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-0.5">
-                  <p className="text-sm font-medium leading-none">
-                    {step.title}
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    {step.description}
-                  </p>
+              ))}
+            </div>
+
+            <p className="mt-6 text-center text-xs text-muted-foreground/50 tracking-wide">
+              This page is the template placeholder — replace it when you start
+              building.
+            </p>
+          </TabsContent>
+
+          {/* ── Tab 3: What's new ── */}
+          <TabsContent value="changelog" className="mt-0 flex flex-col gap-4">
+            {changelog.map((release) => (
+              <div key={release.version} className="flex flex-col gap-4">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-sm font-bold text-foreground">
+                    v{release.version}
+                  </span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {release.date}
+                  </span>
                 </div>
+
+                {release.added.length > 0 && (
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-semibold tracking-widest text-emerald-500 uppercase">
+                      Added
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {release.added.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-0.5 shrink-0 text-emerald-500">
+                            +
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {release.changed.length > 0 && (
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-semibold tracking-widest text-(--color-accent-glow) uppercase">
+                      Changed
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {release.changed.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-0.5 shrink-0 text-(--color-accent-glow)">
+                            ~
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {release.fixed.length > 0 && (
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-semibold tracking-widest text-amber-500 uppercase">
+                      Fixed
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {release.fixed.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-0.5 shrink-0 text-amber-500">
+                            ↳
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {release.removed.length > 0 && (
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-semibold tracking-widest text-red-500 uppercase">
+                      Removed
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {release.removed.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-0.5 shrink-0 text-red-500">
+                            −
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
-          </CardContent>
-        </Card>
+            <p className="mt-2 text-[11px] text-muted-foreground/50">
+              Full history in{' '}
+              <code className="font-mono">docs/CHANGELOG.md</code>
+            </p>
+          </TabsContent>
+
+          {/* ── Tab 2: How it works ── */}
+          <TabsContent value="guide" className="mt-0 flex flex-col gap-6">
+            {/* Stack */}
+            <section>
+              <h2 className="mb-3 text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">
+                Stack
+              </h2>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {stack.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex flex-col gap-0.5 rounded-lg border border-border/40 bg-muted/30 px-3.5 py-2.5"
+                  >
+                    <span className="text-xs font-semibold text-foreground">
+                      {item.label}
+                    </span>
+                    <span className="text-[11px] text-muted-foreground">
+                      {item.note}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Commands */}
+            <section>
+              <h2 className="mb-3 text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">
+                Custom Commands
+              </h2>
+              <div className="rounded-xl border border-border/40 bg-card/40 divide-y divide-border/30">
+                {customCommands.map((item) => (
+                  <div
+                    key={item.cmd}
+                    className="flex items-center gap-3 px-4 py-2.5"
+                  >
+                    <code className="w-52 shrink-0 font-mono text-[11px] font-medium text-(--color-accent-glow)">
+                      {item.cmd}
+                    </code>
+                    <span className="text-xs text-muted-foreground">
+                      {item.desc}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Built-ins */}
+            <section>
+              <h2 className="mb-3 text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">
+                Key Built-in Commands
+              </h2>
+              <div className="rounded-xl border border-border/40 bg-card/40 divide-y divide-border/30">
+                {builtinCommands.map((item) => (
+                  <div
+                    key={item.cmd}
+                    className="flex items-center gap-3 px-4 py-2.5"
+                  >
+                    <code className="w-52 shrink-0 font-mono text-[11px] font-medium text-muted-foreground">
+                      {item.cmd}
+                    </code>
+                    <span className="text-xs text-muted-foreground">
+                      {item.desc}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Docs map */}
+            <section>
+              <h2 className="mb-3 text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">
+                Docs Map
+              </h2>
+              <div className="rounded-xl border border-border/40 bg-card/40 divide-y divide-border/30">
+                {docs.map((item) => (
+                  <div
+                    key={item.file}
+                    className="flex items-center gap-3 px-4 py-2.5"
+                  >
+                    <code className="w-52 shrink-0 font-mono text-[11px] text-foreground/70">
+                      {item.file}
+                    </code>
+                    <span className="text-xs text-muted-foreground">
+                      {item.purpose}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </TabsContent>
+        </Tabs>
 
         {/* Footer */}
-        <p className="text-muted-foreground/60 text-xs">
-          React + Vite + TypeScript + Tailwind + shadcn/ui
+        <p className="mt-10 text-center font-mono text-[10px] text-muted-foreground/40 tracking-widest uppercase">
+          React 19 · Vite 8 · Tailwind v4 · shadcn/ui · TanStack Query · Zustand
         </p>
       </div>
     </div>

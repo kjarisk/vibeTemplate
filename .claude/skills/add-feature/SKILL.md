@@ -1,6 +1,10 @@
 ---
 name: add-feature
-description: Scaffold a new feature slice following the project architecture conventions
+description: Scaffold a new feature slice under src/features/<name>/. Use when creating a new feature area or starting implementation of a feature listed in docs/outline.md.
+when_to_use: Use this skill when the user asks to create a new feature, start a new feature slice, or scaffold the structure for a feature listed in docs/outline.md.
+allowed-tools: Read, Write, Bash
+argument-hint: <feature-name>
+user-invocable: true
 ---
 
 ## What I do
@@ -74,7 +78,7 @@ export const use<Name>Store = create<<Name>State>()(() => ({
 
 ## Rules
 
-- Follow naming conventions from AGENTS.md: PascalCase for components, useXxx for hooks, kebab-case for files.
+- Follow naming conventions from CLAUDE.md: PascalCase for components, useXxx for hooks, kebab-case for files.
 - Do NOT add the feature to the router unless explicitly asked.
 - Do NOT install new dependencies unless the feature requires it (ask first).
 - Update `docs/plan.md` to reflect the new feature slice if it is not already listed.

@@ -1,27 +1,25 @@
 # Skills
 
-Skills are reusable prompt templates that extend the capabilities of your AI coding assistant. They follow the [Agent Skills](https://agentskills.io) open standard and work across OpenCode, Claude Code, Cursor, and other AI tools.
+Skills are reusable prompt templates that extend Claude Code's capabilities. They follow the [Agent Skills](https://agentskills.io) open standard.
 
 ---
 
-## How skills work
+## How skills work in Claude Code
 
-A skill is a directory containing a `SKILL.md` file. When you invoke a skill (via the `skill` tool in OpenCode), the agent loads those instructions and follows them for the current task.
+A skill is a directory containing a `SKILL.md` file with YAML frontmatter. Claude Code auto-loads skills when their `description` matches the current task, or you invoke them manually via `/skill-name`.
 
 Skills live in two places:
 
-| Location            | Purpose                                                                |
-| ------------------- | ---------------------------------------------------------------------- |
-| `.agents/skills/`   | Third-party skills from the Context7 registry (universal client)       |
-| `.opencode/skills/` | Project-specific custom skills (add-feature, add-component, add-route) |
-
-`.agents/skills/` is gitignored by default — each developer installs skills locally. `.opencode/skills/` is committed to the repo so the whole team shares the same custom workflows.
+| Location | Purpose |
+|----------|---------|
+| `.agents/skills/` | Third-party skills from the Context7 registry (gitignored, install locally) |
+| `.claude/skills/` | Project-specific skills (committed, shared with team) |
 
 ---
 
-## Installing skills
+## Installing third-party skills
 
-Skills are managed with the Context7 CLI (`ctx7`). No global install required — use `npx`:
+Skills are managed with the Context7 CLI (`ctx7`). No global install needed:
 
 ```bash
 # Search the registry
@@ -31,62 +29,78 @@ npx ctx7 skills search <keyword>
 npx ctx7 skills install /org/repo <skill-name>
 
 # Install multiple at once
-npx ctx7 skills install /org/repo skill-a skill-b
+npx ctx7 skills install /org/repo skill-a skill-b skill-c
 
-# Auto-suggest skills based on your package.json dependencies
+# Auto-suggest based on your package.json
 npx ctx7 skills suggest
 
-# List what's currently installed
+# List currently installed skills
 npx ctx7 skills list
 ```
 
-Or run the `/setup-skills` command in OpenCode to be guided through the process interactively.
+Or run `/setup-skills` in Claude Code for interactive guided install.
 
 ---
 
 ## Recommended skills for this stack
 
-These skills are commonly useful for React + Vite + Tailwind + shadcn projects:
+These skills work well for React + Vite + Tailwind + shadcn/ui projects:
 
-| Skill                    | Registry path                        | What it does                                                                     |
-| ------------------------ | ------------------------------------ | -------------------------------------------------------------------------------- |
-| `frontend-design`        | `/agentskills-community/agentskills` | Production-grade UI with bold aesthetic direction, avoids generic AI aesthetics  |
-| `frontend-ui-ux`         | `/agentskills-community/agentskills` | Designer-turned-developer approach for UI/UX without mockups                     |
-| `web-design-guidelines`  | `/agentskills-community/agentskills` | Review UI code for accessibility, spacing, typography, responsive best practices |
-| `ui-design-system`       | `/agentskills-community/agentskills` | Design tokens, component documentation, developer handoff                        |
-| `ux-researcher-designer` | `/agentskills-community/agentskills` | Persona generation, journey mapping, usability testing frameworks                |
+| Skill | Registry | Stars | What it does |
+|-------|----------|-------|-------------|
+| `frontend-design` | `/anthropics/skills` | ★★★★ | Production-grade UI with bold aesthetic direction, avoids generic AI aesthetics |
+| `canvas-design` | `/anthropics/skills` | ★★★☆ | Canvas and visual design system work |
+| `interaction-design` | `/wshobson/agents` | ★☆☆☆ | Interaction patterns, motion, UX flows |
 
-Install them all at once:
+Install individually (ctx7 installs one skill at a time):
 
 ```bash
-npx ctx7 skills install /agentskills-community/agentskills \
-  frontend-design frontend-ui-ux web-design-guidelines ui-design-system ux-researcher-designer
+# Install to .agents/skills/ (gitignored, universal format)
+npx ctx7 skills install /anthropics/skills frontend-design --universal -y
+npx ctx7 skills install /anthropics/skills canvas-design --universal -y
+npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```
 
-Or let the CLI suggest what's relevant:
+Or run `/setup-skills` in Claude Code for interactive guided install.
 
-```bash
-npx ctx7 skills suggest
-```
+> **Note:** The registry is community-maintained. Use `npx ctx7 skills search <keyword>` to find current options. Prefer skills from `/anthropics/skills` (Trust: High, verified source).
 
 ---
 
-## Project-specific skills (`.opencode/skills/`)
+## Project-specific skills (`.claude/skills/`)
 
-These are committed to the repo and always available:
+These are committed to the repo — no installation needed:
 
-| Skill           | When to use                                                     |
-| --------------- | --------------------------------------------------------------- |
-| `add-feature`   | Scaffold a new feature slice under `src/features/<name>/`       |
-| `add-component` | Add a shadcn/ui component or create a custom reusable component |
-| `add-route`     | Add React Router and configure a new route/page                 |
+| Skill | Invoke | When to use |
+|-------|--------|-------------|
+| `add-feature` | `/new-feature <name>` | Scaffold a new feature slice under `src/features/<name>/` |
+| `add-component` | `/add-component <name>` or describe it | Add a shadcn/ui component or custom reusable component |
+| `add-route` | `/add-route <name>` or ask for routing | Add React Router and configure a new route/page |
 
-Invoke them via the OpenCode `skill` tool or the `/new-feature` command.
+---
+
+## Skill frontmatter reference
+
+Skills in `.claude/skills/*/SKILL.md` support these frontmatter fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Display name (lowercase, hyphens, numbers only) |
+| `description` | string | When Claude should use this skill (used for auto-suggestion) |
+| `when_to_use` | string | Additional context for invocation |
+| `allowed-tools` | string | Space-separated tools the skill can use without prompts |
+| `argument-hint` | string | Hint shown in autocomplete (e.g. `<feature-name>`) |
+| `user-invocable` | boolean | Whether the skill appears in the `/` menu (default: true) |
+| `disable-model-invocation` | boolean | Prevent Claude from auto-loading this skill |
+| `context` | string | Set to `fork` to run in an isolated sub-agent |
+| `agent` | string | Sub-agent type when `context: fork` (e.g. `general-purpose`) |
+| `model` | string | Override model for this skill |
+| `effort` | string | Override effort: `low`, `medium`, `high`, `max` |
 
 ---
 
 ## Further reading
 
-- Context7 Skills docs: https://context7.com/docs/skills
+- Claude Code skills docs: https://code.claude.com/docs/en/skills
+- Context7 skills registry: https://context7.com/skills
 - Agent Skills open standard: https://agentskills.io
-- Browse the registry: https://context7.com/skills

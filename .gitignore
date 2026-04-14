@@ -13,6 +13,9 @@ dist-ssr
 coverage
 *.local
 
+# Third-party skills (installed locally per developer, not committed)
+.agents/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

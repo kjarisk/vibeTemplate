@@ -1,6 +1,10 @@
 ---
 name: add-component
-description: Add a new shadcn/ui component or create a custom reusable component
+description: Add a shadcn/ui component or create a custom reusable component. Use when adding new UI components to the project.
+when_to_use: Use this skill when adding a new UI component — either from the shadcn/ui library or as a custom reusable component in src/components/.
+allowed-tools: Read, Write, Bash
+argument-hint: <component-name>
+user-invocable: true
 ---
 
 ## What I do
@@ -29,7 +33,7 @@ Help add UI components to the project, either from shadcn/ui or as custom reusab
 
 ## For custom reusable components
 
-1. Create the component in `src/components/` (NOT in `src/components/ui/` -- that is reserved for shadcn).
+1. Create the component in `src/components/` (NOT in `src/components/ui/` — that is reserved for shadcn).
 2. Follow this structure:
    ```
    src/components/

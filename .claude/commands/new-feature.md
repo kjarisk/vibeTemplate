@@ -1,6 +1,6 @@
 ---
 description: Scaffold a new feature slice
-subtask: true
+argument-hint: <feature-name>
 ---
 
 Load the `add-feature` skill and use it to scaffold a new feature slice.

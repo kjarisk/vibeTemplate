@@ -1,44 +1,39 @@
 # Outline (Scope Lock)
 
-## 1) One-sentence goal
+> **This file is a template.** Run `/setup` to fill it in for your specific project.
+>
+> **If it is not in this document, we do not build it.**
 
-<Write the goal in one sentence. Example: "A lightweight task tracker for a single user with offline-first support.">
+---
 
-## 2) Non-goals (explicitly NOT doing)
+## Goal
 
-- <Example: No team collaboration>
-- <Example: No payments>
-- <Example: No admin panel>
-- <Example: No multi-language support in v1>
+_Run `/setup` to define this._
 
-## 3) Target user
+## Non-goals (v1)
 
-- Primary: <who>
-- Context: <when/why they use it>
+_Run `/setup` to define this._
 
-## 4) Core flows (3–7 bullets)
+## Target user
 
-1. <Flow 1: e.g. Create item>
-2. <Flow 2: e.g. List items>
-3. <Flow 3: e.g. Edit item>
-4. <Flow 4: e.g. Delete item>
+_Run `/setup` to define this._
 
-## 5) Data model (minimal)
+## Core flows
 
-- Entity: <name>
-  - fields: <id, name, createdAt, ...>
+_Run `/setup` to define this._
 
-## 6) UI references
+## Data model (minimal)
 
-- Figma link(s):
-- Screenshots: see `docs/screenshots/` (drop inspiration images here)
-- Moodboard: see `docs/moodboard/` (drop color palettes, typography, visual direction here)
-- Notes (visual direction, typography, tone):
+> Fill in as you implement — start with the nouns from your core flows.
 
-## 7) Definition of Done (v1)
+## UI references
+
+> Add images to `docs/moodboard/` and `docs/screenshots/`, then run `/generate-visual-direction`.
+
+## Definition of Done (v1)
 
 - [ ] All core flows work end-to-end
-- [ ] Basic error states + loading states exist
-- [ ] Responsive for desktop + mobile
-- [ ] Tests exist for critical logic/components
-- [ ] README updated with run instructions
+- [ ] Loading, error, and empty states exist everywhere
+- [ ] Keyboard accessible throughout
+- [ ] Passes `npm run build` with no errors
+- [ ] Deployed and live

@@ -1,6 +1,8 @@
-# /generate-visual-direction
+---
+description: Read moodboard and screenshot images and write docs/visual-direction.md
+---
 
-Read the moodboard and screenshot images once, then write a `docs/visual-direction.md` summary that the agent (and team) can reference going forward — without re-reading images every session.
+Read the moodboard and screenshot images once, then write a `docs/visual-direction.md` summary that the agent can reference going forward — without re-reading images every session.
 
 ## Steps
 
@@ -55,10 +57,10 @@ Read the moodboard and screenshot images once, then write a `docs/visual-directi
    - Note the source images this summary was derived from (filenames only).
 
 5. **Confirm**
-   - Tell the user: "`docs/visual-direction.md` written. The agent will now use this file instead of re-reading images each session."
+   - Tell the user: "`docs/visual-direction.md` written. Claude Code will now use this file instead of re-reading images each session."
 
 ## Notes
 
-- This command should be run once at project start (after dropping images in) and re-run whenever the visual direction changes significantly.
-- `docs/visual-direction.md` is loaded automatically every session via `opencode.json` instructions (if it exists and is non-empty).
+- Run once at project start (after dropping images in) and re-run whenever the visual direction changes significantly.
+- `docs/visual-direction.md` is listed in CLAUDE.md — it will be checked every session.
 - Do NOT modify existing source images. Only write `docs/visual-direction.md`.
