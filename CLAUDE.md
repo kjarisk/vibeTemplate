@@ -89,10 +89,12 @@ src/
 
 ### 9. Parallel Execution
 
-Use sub-agents (Agent tool) for tasks with no shared state:
+Use sub-agents for tasks with no shared state:
 - Independent feature slices
 - Parallel lint + test + build verification
 - Test generation for multiple components
+
+**SDK:** use the `Agent` tool · **CLI:** define custom agents in `.claude/agents/<name>.md`
 
 Do NOT parallelize: shared state, overlapping files, sequential dependencies
 
@@ -104,7 +106,7 @@ Guide lives in `docs/deploy.md` — options: GitHub Pages (free), Linode VPS (rs
 
 - Project skills: `.claude/skills/` — committed, always available
 - Third-party skills: `.agents/skills/` — gitignored, installed locally
-- See `docs/skills.md` for the full reference and `/setup-skills` for interactive install
+- Run `/setup-skills` for interactive install · full reference at https://github.com/kjarisk/vibeTemplate/wiki/Skills
 
 ---
 

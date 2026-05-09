@@ -102,7 +102,7 @@ npx ctx7 skills install /anthropics/skills canvas-design --universal -y
 npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```
 
-See `docs/skills.md` for the full reference.
+See the [Skills wiki](https://github.com/kjarisk/vibeTemplate/wiki/Skills) for the full reference.
 
 ---
 
@@ -186,9 +186,9 @@ Once you're past setup, every session looks like this:
 | `docs/plan.md` | Build phases with checkboxes |
 | `docs/decisions.md` | Log of architectural and setup decisions |
 | `docs/visual-direction.md` | Generated visual brief for the project |
-| `docs/learning.md` | Deep guide to all Claude Code features |
 | `docs/deploy.md` | Deployment instructions for all 3 targets |
-| `docs/skills.md` | Skills reference and install commands |
+| [Wiki: Learning](https://github.com/kjarisk/vibeTemplate/wiki/Learning) | Claude Code features reference |
+| [Wiki: Skills](https://github.com/kjarisk/vibeTemplate/wiki/Skills) | Skills reference and install commands |
 | `docs/QUICKSTART.md` | npm scripts and commands reference |
 | `.claude/commands/` | Custom slash commands for this template |
 | `.claude/skills/` | Project-specific skills (committed) |
@@ -200,6 +200,6 @@ Once you're past setup, every session looks like this:
 
 ## Next steps
 
-- Read `docs/learning.md` for a comprehensive guide to Claude Code features
+- Read the [Learning wiki](https://github.com/kjarisk/vibeTemplate/wiki/Learning) for a comprehensive guide to Claude Code features
 - Read `docs/QUICKSTART.md` for all npm scripts and command shortcuts
-- Read `docs/skills.md` to understand the skills system
+- Read the [Skills wiki](https://github.com/kjarisk/vibeTemplate/wiki/Skills) to understand the skills system

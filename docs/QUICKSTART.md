@@ -90,6 +90,8 @@ npm run preview        # Preview production build locally
 | `/memory` | View or edit Claude's persistent memory |
 | `/install-github-app` | Connect Claude to GitHub for PR reviews |
 | `/mcp` | Manage MCP server connections |
+| `/ultrareview` | Multi-agent cloud code review of current diff or a PR number |
+| `/usage` | Show session cost and stats |
 
 ### Custom (this template)
 
@@ -178,5 +180,8 @@ Or edit `.mcp.json` directly.
 - **Commit often** — after every working slice, not just at the end
 - **Update the docs** — check off `docs/plan.md` and `docs/outline.md` after each completed task
 
-See `docs/learning.md` for a comprehensive guide to all Claude Code features.
-See `docs/getting-started.md` for the step-by-step first-day walkthrough (this file is deleted by `/setup` on new projects).
+**Reference docs (GitHub wiki):**
+- [Claude Code features guide](https://github.com/kjarisk/vibeTemplate/wiki/Learning)
+- [Skills reference + install commands](https://github.com/kjarisk/vibeTemplate/wiki/Skills)
+
+See `docs/getting-started.md` for the step-by-step first-day walkthrough (deleted by `/setup` on new projects).

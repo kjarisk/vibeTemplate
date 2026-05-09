@@ -21,6 +21,7 @@
     ],
     "defaultMode": "default"
   },
+  "enableAllProjectMcpServers": true,
   "hooks": {
     "PostToolUse": [
       {

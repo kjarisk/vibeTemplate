@@ -8,7 +8,7 @@ Check whether recommended skills are installed and offer to install them.
 
 1. Run `npx ctx7 skills list` to see what is currently installed in `.agents/skills/`.
 
-2. Compare the output against the recommended skills from `docs/skills.md`:
+2. Compare the output against the recommended skills from the [Skills wiki](https://github.com/kjarisk/vibeTemplate/wiki/Skills):
    - `frontend-design` (from `/anthropics/skills`)
    - `canvas-design` (from `/anthropics/skills`)
    - `interaction-design` (from `/wshobson/agents`)
@@ -35,4 +35,4 @@ Check whether recommended skills are installed and offer to install them.
 
 - `.agents/skills/` is gitignored — each developer installs skills locally.
 - Skills follow the [Agent Skills](https://agentskills.io) open standard.
-- See `docs/skills.md` for full reference and install commands.
+- Full reference: https://github.com/kjarisk/vibeTemplate/wiki/Skills

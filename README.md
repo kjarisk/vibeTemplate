@@ -50,9 +50,7 @@ docs/
   plan.md             # phased implementation plan
   decisions.md        # architecture decision log
   deploy.md           # deployment guide (GitHub Pages / Linode / Vercel)
-  skills.md           # skills reference + install guide
   prompts.md          # reusable AI prompts
-  learning.md         # Claude Code feature guide with references
   visual-direction.md # generated visual summary (run /generate-visual-direction)
   moodboard/          # drop color/typography reference images here
   screenshots/        # drop UI inspiration images here
@@ -123,7 +121,7 @@ Three options covered in `docs/deploy.md` and the `/deploy` command:
 | [docs/plan.md](docs/plan.md) | Phased implementation plan |
 | [docs/decisions.md](docs/decisions.md) | Architecture decision log |
 | [docs/deploy.md](docs/deploy.md) | Deployment guide (3 options) |
-| [docs/skills.md](docs/skills.md) | Skills reference + install guide |
 | [docs/prompts.md](docs/prompts.md) | Reusable prompts for common workflows |
-| [docs/learning.md](docs/learning.md) | Claude Code features learning guide |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Setup + commands cheat sheet |
+| [Wiki: Learning](https://github.com/kjarisk/vibeTemplate/wiki/Learning) | Claude Code features reference |
+| [Wiki: Skills](https://github.com/kjarisk/vibeTemplate/wiki/Skills) | Skills system + install commands |

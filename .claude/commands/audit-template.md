@@ -167,10 +167,9 @@ If any of these fail: list which steps were missed and tell the user to re-run `
 
 Check these files exist and are up to date:
 
-- [ ] `docs/learning.md` exists and references `docs.anthropic.com` URLs (not `code.claude.com`)
 - [ ] `docs/deploy.md` covers all 3 options: GitHub Pages, Linode, Vercel
-- [ ] `docs/skills.md` has correct ctx7 install syntax (`--universal -y`, one skill at a time)
-- [ ] `docs/QUICKSTART.md` lists both custom and built-in commands
+- [ ] `docs/QUICKSTART.md` lists both custom and built-in commands and links to the wiki
+- [ ] Wiki pages exist: https://github.com/kjarisk/vibeTemplate/wiki/Learning and /wiki/Skills
 - [ ] `README.md` references `CLAUDE.md` not `AGENTS.md`
 
 ---

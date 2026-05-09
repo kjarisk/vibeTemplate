@@ -7,6 +7,35 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.7.0] 2026-05-09 — Move reference docs to GitHub wiki, fix drift-check issues
+
+### Changed
+- `docs/learning.md` and `docs/skills.md` moved to GitHub wiki — https://github.com/kjarisk/vibeTemplate/wiki
+- All references across CLAUDE.md, QUICKSTART.md, README.md, getting-started.md, and commands updated to wiki links
+- Startup page docs map updated: wiki entries replace the two removed files
+- `.claude/agents/` subagent directory noted in CLAUDE.md rule #9 alongside Agent tool
+
+### Fixed
+- Removed fabricated memory layers (Auto Dream, Scoped Memory) from learning reference
+- All 403 `docs.anthropic.com` links updated to `code.claude.com/docs/en`
+- Hook handler types: added `mcp_tool`
+- Effort default note: `high` is now default for Pro/Max subscribers
+- `enableAllProjectMcpServers: true` added to `.claude/settings.json`
+- `/ultrareview` and `/usage` added to QUICKSTART built-in commands table
+
+### Removed
+- `docs/learning.md` (now at wiki/Learning)
+- `docs/skills.md` (now at wiki/Skills)
+
+### Dependencies bumped
+- `tailwindcss` + `@tailwindcss/vite`: 4.1.18 → 4.2.4 (must bump together)
+- `@tanstack/react-query`: 5.90.20 → 5.100.9
+- `lucide-react`: 1.8.0 → 1.14.0
+- `typescript-eslint`: 8.46.4 → 8.59.1
+- `shadcn` CLI: 4.2.0 → 4.6.0
+
+---
+
 ## [0.6.4] 2026-04-14 — Clarify moodboard vs screenshots distinction
 
 ### Changed

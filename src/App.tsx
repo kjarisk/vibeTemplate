@@ -33,6 +33,23 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.7.0',
+    date: '2026-05-09',
+    added: [],
+    changed: [
+      'docs/learning.md and docs/skills.md moved to GitHub wiki — no more per-session token overhead or drift',
+      'All repo references updated to wiki links (CLAUDE.md, QUICKSTART.md, README, getting-started.md, commands)',
+    ],
+    fixed: [
+      'Removed fabricated memory layers (Auto Dream, Scoped Memory) from learning reference',
+      'Fixed all 403 docs links — now point to code.claude.com/docs/en',
+      'Updated hook handler types: added mcp_tool',
+      'Effort default note updated: high is now default for Pro/Max subscribers',
+      'enableAllProjectMcpServers added to settings.json — no MCP approval dialogs on fresh clone',
+    ],
+    removed: ['docs/learning.md and docs/skills.md (moved to wiki)'],
+  },
+  {
     version: '0.6.4',
     date: '2026-04-14',
     added: [],
@@ -153,12 +170,12 @@ const docs = [
   { file: 'docs/CHANGELOG.md', purpose: 'Version history + release notes' },
   { file: 'docs/visual-direction.md', purpose: 'Generated design brief' },
   { file: 'docs/deploy.md', purpose: 'Deployment guide (3 options)' },
-  { file: 'docs/skills.md', purpose: 'Skills reference + install commands' },
-  { file: 'docs/learning.md', purpose: 'Claude Code features reference' },
   {
     file: 'docs/getting-started.md',
     purpose: 'First-day walkthrough (deleted by /setup)',
   },
+  { file: 'wiki/Learning →', purpose: 'Claude Code features reference' },
+  { file: 'wiki/Skills →', purpose: 'Skills system + install commands' },
 ]
 
 function App() {
