@@ -5,7 +5,7 @@ A production-ready starter template for AI-assisted development with Claude Code
 ## Quick start
 
 ```bash
-degit YOUR_USER/vibecoding-template my-app && cd my-app && npm i
+npx degit kjarisk/vibeTemplate my-app && cd my-app && npm i
 ```
 
 Then open Claude Code and run `/setup` — it will guide you through defining your project scope, deployment target, and optional features.
