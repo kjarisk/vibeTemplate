@@ -10,6 +10,8 @@ npx degit kjarisk/vibeTemplate my-app && cd my-app && npm i
 
 Then open Claude Code and run `/setup` — it will guide you through defining your project scope, deployment target, and optional features.
 
+> Reference docs: [wiki](https://github.com/kjarisk/vibeTemplate/wiki)
+
 ## How it works
 
 1. **Define scope** — run `/setup` to fill `docs/outline.md` (scope lock) and `docs/plan.md` (vertical slices)
