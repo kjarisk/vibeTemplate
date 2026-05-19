@@ -1,6 +1,8 @@
 # Vibecoding Template (React + Vite)
 
-A production-ready starter template for AI-assisted development with Claude Code. Built with strong guardrails, vertical slice architecture, and everything you need to ship fast without losing control of scope.
+A production-ready **React SPA** starter template for AI-assisted development with Claude Code. Built with strong guardrails, vertical slice architecture, and everything you need to ship fast without losing control of scope.
+
+> **This template is for React SPAs** (Vite + TypeScript + Tailwind + shadcn/ui). If you need SSR, a backend API, or a different stack, the harness structure still applies but the default stack will need updating after `/setup`.
 
 ## Quick start
 
@@ -66,31 +68,7 @@ docs/
 
 ## Available commands
 
-### Built-in Claude Code commands
-
-| Command | What it does |
-|---------|-------------|
-| `/compact` | Summarize conversation + free up context (use often in long sessions) |
-| `/rewind` | Roll back conversation and code changes to an earlier point |
-| `/branch` | Explore an alternative approach without losing current state |
-| `/model haiku` | Switch to faster model for simple tasks |
-| `/effort high` | Use max reasoning for complex problems |
-| `/memory` | View or edit Claude's memory |
-| `/install-github-app` | Connect Claude to GitHub for PR reviews |
-
-### Custom commands (this template)
-
-| Command | What it does |
-|---------|-------------|
-| `/setup` | Interactive project bootstrap — fills outline, plan, decisions |
-| `/lint` | Run ESLint + auto-fix |
-| `/test` | Run Vitest with coverage report |
-| `/build` | TypeScript check + Vite production build |
-| `/new-feature <name>` | Scaffold a feature slice under `src/features/<name>/` |
-| `/review` | Review recent changes for quality and scope issues |
-| `/deploy` | AI-guided deployment setup (GitHub Pages / Linode / Vercel) |
-| `/setup-skills` | Check and install recommended Context7 design skills |
-| `/generate-visual-direction` | Extract visual direction from moodboard/screenshot images |
+See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for the full list of built-in and custom commands.
 
 ## npm scripts
 

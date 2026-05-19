@@ -32,7 +32,7 @@ Do NOT pre-read all docs at the start of every session. Read lazily:
 
 **Optional (ask first):** React Router · Zod · React Hook Form · Sonner
 
-**Not allowed without explicit approval:** Next.js · Redux · alternative UI libraries
+**Discuss before choosing:** Next.js (if SSR is genuinely needed) · Redux (Zustand covers most cases) · alternative UI libraries — update this file if the project type warrants a different choice
 
 ### 3. Architecture
 
@@ -106,7 +106,7 @@ Guide lives in `docs/deploy.md` — options: GitHub Pages (free), Linode VPS (rs
 
 - Project skills: `.claude/skills/` — committed, loaded natively by Claude Code at session start
 - Third-party skills: `.agents/skills/` — gitignored, installed locally; surfaced via the Context7 MCP server (not auto-discovered by Claude Code itself)
-- Path-scoped rules: `.claude/rules/` — separate files per domain (e.g. `api.md`, `components.md`) load only when Claude works with matching files
+- Path-scoped rules: `.claude/rules/` — starter files `api.md` and `components.md` included; add more per domain, they load only when Claude works with matching files
 - Personal overrides: `CLAUDE.local.md` (gitignored) — per-machine notes, sandbox URLs, personal preferences
 - Run `/setup-skills` for interactive install · full reference at https://github.com/kjarisk/vibeTemplate/wiki/Skills
 

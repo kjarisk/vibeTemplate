@@ -119,6 +119,7 @@ npm run preview        # Preview production build locally
 | `/deploy` | AI-guided deployment setup |
 | `/setup-skills` | Check and install recommended skills |
 | `/generate-visual-direction` | Generate visual direction from images |
+| `/sync-template` | Pull harness updates from upstream without touching project files |
 
 ---
 
