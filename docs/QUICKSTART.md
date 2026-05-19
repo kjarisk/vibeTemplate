@@ -83,13 +83,24 @@ npm run preview        # Preview production build locally
 | `/compact` | Summarize conversation + free up context — **use this often in long sessions** |
 | `/rewind` | Roll back conversation and code to an earlier checkpoint |
 | `/branch` | Explore an alternative approach without losing current state |
+| `/plan` | Enter plan mode before a large change |
 | `/model haiku` | Switch to faster/cheaper model for simple tasks |
 | `/model sonnet` | Switch back to default model |
 | `/effort low` | Less reasoning (faster, cheaper) |
 | `/effort high` | More reasoning (slower, for complex problems) |
+| `/config` | Picker for model, output style, and other settings |
 | `/memory` | View or edit Claude's persistent memory |
+| `/permissions` | Manage allow/deny/ask rules interactively |
 | `/install-github-app` | Connect Claude to GitHub for PR reviews |
 | `/mcp` | Manage MCP server connections |
+| `/agents` | Open subagent manager |
+| `/tasks` | List background tasks running in this session |
+| `/batch` | Decompose a large change into parallel worktree units |
+| `/background` | Detach session to run as a background agent |
+| `/schedule` | Create a cloud routine that runs on a schedule or GitHub event |
+| `/context` | Show context window breakdown |
+| `/btw` | Quick aside that doesn't bloat history |
+| `/doctor` | Diagnose skill listing budget overflows and config issues |
 | `/ultrareview` | Multi-agent cloud code review of current diff or a PR number |
 | `/usage` | Show session cost and stats |
 
@@ -179,6 +190,11 @@ Or edit `.mcp.json` directly.
 - **Cite the outline** — before coding, always confirm which bullet in `docs/outline.md` this supports
 - **Commit often** — after every working slice, not just at the end
 - **Update the docs** — check off `docs/plan.md` and `docs/outline.md` after each completed task
+- **Output styles** — run `/config` → Output style to switch between Default, Proactive (auto-executes steps), Explanatory (teaches as it works), or Learning (inserts `TODO(human)` markers for you to implement)
+- **Auto memory** — Claude builds memory across sessions automatically; run `/memory` to see what it saved, edit it, or disable with `autoMemoryEnabled: false` in `~/.claude/settings.json`
+- **Path-scoped rules** — put file-type-specific instructions in `.claude/rules/` (e.g. `api.md`, `components.md`) so they only load when Claude works with matching files, keeping CLAUDE.md lean
+- **Personal overrides** — use `CLAUDE.local.md` (gitignored) for per-machine notes: sandbox URLs, personal API keys, local dev preferences — without polluting the shared `CLAUDE.md`
+- **Scheduled routines** — use `/schedule` to create a cloud routine that runs on a cron schedule or GitHub event, even when your machine is off (Pro/Max/Team plans)
 - **Running in auto mode?** Add `autoMode.hard_deny` to `~/.claude/settings.json` (user-level only — not read from project settings) to unconditionally block dangerous operations regardless of instructions:
   ```json
   { "autoMode": { "hard_deny": ["$defaults", "Never delete migration files"] } }

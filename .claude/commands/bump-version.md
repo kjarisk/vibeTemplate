@@ -1,5 +1,6 @@
 ---
 description: Bump the template version — updates CHANGELOG.md, App.tsx, package.json, commits, tags, and pushes to GitHub in one pass.
+disable-model-invocation: true
 ---
 
 Bump the template version. Walk through each step below in order.

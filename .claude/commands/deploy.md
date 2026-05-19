@@ -1,5 +1,6 @@
 ---
 description: AI-guided deployment setup
+disable-model-invocation: true
 ---
 
 Walk the user through deployment setup for this project. First, ask which deployment target they want:

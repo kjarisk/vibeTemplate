@@ -106,6 +106,8 @@ Guide lives in `docs/deploy.md` — options: GitHub Pages (free), Linode VPS (rs
 
 - Project skills: `.claude/skills/` — committed, loaded natively by Claude Code at session start
 - Third-party skills: `.agents/skills/` — gitignored, installed locally; surfaced via the Context7 MCP server (not auto-discovered by Claude Code itself)
+- Path-scoped rules: `.claude/rules/` — separate files per domain (e.g. `api.md`, `components.md`) load only when Claude works with matching files
+- Personal overrides: `CLAUDE.local.md` (gitignored) — per-machine notes, sandbox URLs, personal preferences
 - Run `/setup-skills` for interactive install · full reference at https://github.com/kjarisk/vibeTemplate/wiki/Skills
 
 To control which skills appear in context (saves token budget), use `skillOverrides` in `settings.json`:
