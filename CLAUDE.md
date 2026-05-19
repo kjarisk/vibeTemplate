@@ -104,9 +104,22 @@ Guide lives in `docs/deploy.md` — options: GitHub Pages (free), Linode VPS (rs
 
 ### 11. Skills
 
-- Project skills: `.claude/skills/` — committed, always available
-- Third-party skills: `.agents/skills/` — gitignored, installed locally
+- Project skills: `.claude/skills/` — committed, loaded natively by Claude Code at session start
+- Third-party skills: `.agents/skills/` — gitignored, installed locally; surfaced via the Context7 MCP server (not auto-discovered by Claude Code itself)
 - Run `/setup-skills` for interactive install · full reference at https://github.com/kjarisk/vibeTemplate/wiki/Skills
+
+To control which skills appear in context (saves token budget), use `skillOverrides` in `settings.json`:
+
+```json
+{
+  "skillOverrides": {
+    "deploy": "off",
+    "generate-visual-direction": "name-only"
+  }
+}
+```
+
+Values: `"on"` (default) · `"name-only"` (shows name, hides description) · `"user-invocable-only"` · `"off"`
 
 ---
 

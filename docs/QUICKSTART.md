@@ -179,6 +179,10 @@ Or edit `.mcp.json` directly.
 - **Cite the outline** — before coding, always confirm which bullet in `docs/outline.md` this supports
 - **Commit often** — after every working slice, not just at the end
 - **Update the docs** — check off `docs/plan.md` and `docs/outline.md` after each completed task
+- **Running in auto mode?** Add `autoMode.hard_deny` to `~/.claude/settings.json` (user-level only — not read from project settings) to unconditionally block dangerous operations regardless of instructions:
+  ```json
+  { "autoMode": { "hard_deny": ["$defaults", "Never delete migration files"] } }
+  ```
 
 **Reference docs (GitHub wiki):**
 - [Claude Code features guide](https://github.com/kjarisk/vibeTemplate/wiki/Learning)
