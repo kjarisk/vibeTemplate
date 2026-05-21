@@ -7,6 +7,21 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.8.0] 2026-05-21 — Sync command, rules starters, Supabase in setup, stack flexibility
+
+### Added
+- `/sync-template` command — diff and pull harness updates from upstream without touching project files
+- `.claude/rules/components.md` and `api.md` — starter path-scoped convention files loaded only for matching files
+- `supabase` option in `/setup` — wires Phase 0 plan tasks and delegates to `/supabase:supabase` skill
+- `/setup` now stamps `Initialized from vibeTemplate vX.Y.Z` into `docs/decisions.md`
+
+### Changed
+- CLAUDE.md §2: Next.js / Redux / alt UI are now "discuss first" instead of hard-blocked
+- README: React SPA scope declared upfront; stale duplicate commands tables replaced with QUICKSTART.md link
+- QUICKSTART.md: `/sync-template` added to custom commands table; CLAUDE.md §11 notes starter rules files
+
+---
+
 ## [0.7.0] 2026-05-09 — Move reference docs to GitHub wiki, fix drift-check issues
 
 ### Changed

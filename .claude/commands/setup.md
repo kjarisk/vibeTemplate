@@ -46,7 +46,8 @@ _e.g. "Freelance designers who need quick invoice tracking without complex accou
 - routing — multiple pages (React Router)
 - forms — validation (React Hook Form + Zod)
 - toasts — notifications (Sonner)
-- auth — authentication (describe what kind)
+- supabase — auth + database (Supabase)
+- auth — other authentication (describe what kind)
 - none
 
 ---
@@ -100,6 +101,12 @@ npx ctx7 skills install /wshobson/agents interaction-design --universal -y
 ```bash
 npx ctx7 skills install /org/repo <skill-name> --universal -y
 ```
+
+**If `supabase` was chosen as an optional feature:**
+
+Do NOT generate any Supabase code here — the `/supabase:supabase` skill handles implementation and stays current. Just tell the user:
+
+> "Supabase setup will happen in Phase 0. When you reach that task, run `/supabase:supabase` and it will wire up the client, auth, and `.env.local` for you."
 
 After installing, tell the user which skills were installed and what they do.
 
@@ -165,7 +172,8 @@ Replace the entire file. Tailor phases to the app type and chosen optional featu
 [if routing: - [ ] `npm install react-router` and run `/add-route` to scaffold router]
 [if forms: - [ ] `npm install react-hook-form zod @hookform/resolvers`]
 [if toasts: - [ ] `npm install sonner`]
-[if auth: - [ ] Set up auth: [describe approach based on auth type they specified]]
+[if supabase: - [ ] Run `/supabase:supabase` to initialize client, auth, and `.env.local`]
+[if auth (other): - [ ] Set up auth: [describe approach based on auth type they specified]]
 
 ## Phase 1 — First happy path
 
@@ -213,7 +221,9 @@ Format: `YYYY-MM-DD: <decision> — <why>`
 [if routing: - YYYY-MM-DD: Added React Router — app needs multiple pages]
 [if forms: - YYYY-MM-DD: Added React Hook Form + Zod — forms require validation]
 [if toasts: - YYYY-MM-DD: Added Sonner — UX requires toast notifications]
-[if auth: - YYYY-MM-DD: Auth: [describe the approach]]
+[if supabase: - YYYY-MM-DD: Added Supabase — auth + database via @supabase/supabase-js]
+[if auth (other): - YYYY-MM-DD: Auth: [describe the approach]]
+- YYYY-MM-DD: Initialized from vibeTemplate v[read version from package.json]
 ```
 
 Replace `docs/CHANGELOG.md` with:

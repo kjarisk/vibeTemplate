@@ -33,6 +33,22 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.8.0',
+    date: '2026-05-21',
+    added: [
+      '/sync-template — diff and pull harness updates from upstream without touching project files',
+      '.claude/rules/components.md + api.md — starter path-scoped convention files',
+      'supabase option in /setup — wires plan tasks, delegates to /supabase:supabase skill',
+      '/setup now stamps template version into docs/decisions.md',
+    ],
+    changed: [
+      'CLAUDE.md §2: Next.js/Redux/alt UI are now "discuss first" instead of hard-blocked',
+      'README: React SPA scope declared upfront; duplicate commands tables removed',
+    ],
+    fixed: [],
+    removed: [],
+  },
+  {
     version: '0.7.0',
     date: '2026-05-09',
     added: [],
@@ -141,6 +157,7 @@ const customCommands = [
   { cmd: '/setup', desc: 'Interactive project bootstrap' },
   { cmd: '/audit-template', desc: '12-category health check + scored report' },
   { cmd: '/bump-version', desc: 'Changelog + tag + push in one pass' },
+  { cmd: '/sync-template', desc: 'Pull harness updates from upstream' },
   { cmd: '/new-feature', desc: 'Scaffold feature slice' },
   { cmd: '/build', desc: 'Type-check + production build' },
   { cmd: '/lint', desc: 'ESLint auto-fix' },
