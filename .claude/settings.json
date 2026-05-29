@@ -25,10 +25,11 @@
   "hooks": {
     "SessionStart": [
       {
+        "matcher": "startup",
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run build --silent 2>/dev/null || true",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && [ -d node_modules ] && npm run build >/dev/null 2>&1 || true",
             "timeout": 60
           }
         ]
@@ -40,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run lint:fix --silent 2>/dev/null || true",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && [ -d node_modules ] && npm run lint:fix >/dev/null 2>&1 || true",
             "timeout": 30
           }
         ]
