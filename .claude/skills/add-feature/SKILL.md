@@ -2,7 +2,7 @@
 name: add-feature
 description: Scaffold a new feature slice under src/features/<name>/. Use when creating a new feature area or starting implementation of a feature listed in docs/outline.md.
 when_to_use: Use this skill when the user asks to create a new feature, start a new feature slice, or scaffold the structure for a feature listed in docs/outline.md.
-allowed-tools: Read, Write, Bash
+allowed-tools: Read Write Bash
 argument-hint: <feature-name>
 user-invocable: true
 ---

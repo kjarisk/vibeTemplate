@@ -1,5 +1,6 @@
 ---
 description: Interactive project bootstrap — run this first on every new project. Asks all questions at once, fills outline/plan/decisions, and installs domain-appropriate skills.
+disable-model-invocation: true
 ---
 
 This is a new project. I need to understand what you're building before writing any code.

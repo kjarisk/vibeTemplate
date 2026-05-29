@@ -59,10 +59,11 @@ docs/
   moodboard/          # drop color/typography reference images here
   screenshots/        # drop UI inspiration images here
 .claude/
-  CLAUDE.md           # loaded automatically — (see CLAUDE.md at root)
   settings.json       # model, permissions, hooks
   commands/           # custom slash commands
   skills/             # project-specific skills
+  rules/              # path-scoped rules (load only for matching files)
+CLAUDE.md             # agent rules — loaded automatically by Claude Code
 .mcp.json             # MCP server config (Context7, GitHub)
 ```
 

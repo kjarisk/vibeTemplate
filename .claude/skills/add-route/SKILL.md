@@ -2,7 +2,7 @@
 name: add-route
 description: Add React Router to the project or add a new route/page to an existing router setup. Use when the user needs navigation between pages.
 when_to_use: Use this skill when the user asks to add routing, create a new page, or add navigation to the app. React Router is optional — confirm it's needed before installing.
-allowed-tools: Read, Write, Bash
+allowed-tools: Read Write Bash
 argument-hint: <route-name>
 user-invocable: true
 ---

@@ -94,6 +94,10 @@ npm run preview        # Preview production build locally
 | `/install-github-app` | Connect Claude to GitHub for PR reviews |
 | `/mcp` | Manage MCP server connections |
 | `/agents` | Open subagent manager |
+| `/skills` | Browse skills, toggle visibility with `Space` (saved to `settings.local.json`) |
+| `/hooks` | Inspect all configured hooks and their sources |
+| `/run` | Launch and drive the app to confirm a change works in the real app |
+| `/verify` | Confirm a change works by observing behavior (without falling back to tests) |
 | `/tasks` | List background tasks running in this session |
 | `/batch` | Decompose a large change into parallel worktree units |
 | `/background` | Detach session to run as a background agent |

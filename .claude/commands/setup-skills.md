@@ -1,5 +1,6 @@
 ---
 description: Check and install recommended skills for this project
+disable-model-invocation: true
 ---
 
 Check whether recommended skills are installed and offer to install them.

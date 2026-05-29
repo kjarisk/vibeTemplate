@@ -13,7 +13,7 @@ Do NOT pre-read all docs at the start of every session. Read lazily:
 - **When about to implement anything:** read `docs/outline.md` to verify it's in scope
 - **When planning next task:** read `docs/plan.md` to find the next unchecked item
 - **When making UI decisions:** read `docs/visual-direction.md` only if it has content (check file size first — skip if it contains "No visual direction generated")
-- **Skills:** only check `.agents/skills/` if you're about to do design/UI work
+- **Skills:** project skills in `.claude/skills/` load natively. Third-party design skills in `.agents/skills/` are not auto-discovered — query them via the Context7 MCP server (`ctx7`/`query-docs`), don't read the files directly
 
 ---
 

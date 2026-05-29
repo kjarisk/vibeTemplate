@@ -1,3 +1,9 @@
+---
+paths:
+  - "src/components/**"
+  - "src/features/*/components/**"
+---
+
 # Component conventions
 
 Apply when working in `src/components/` or `src/features/*/components/`.

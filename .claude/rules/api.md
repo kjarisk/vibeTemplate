@@ -1,3 +1,8 @@
+---
+paths:
+  - "src/features/*/api/**"
+---
+
 # Data fetching conventions
 
 Apply when working in `src/features/*/api/` or any file using `useQuery` / `useMutation`.
