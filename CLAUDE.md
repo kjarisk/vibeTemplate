@@ -94,7 +94,7 @@ Use sub-agents for tasks with no shared state:
 - Parallel lint + test + build verification
 - Test generation for multiple components
 
-**SDK:** use the `Agent` tool · **CLI:** define custom agents in `.claude/agents/<name>.md`
+**SDK:** use the `Agent` tool · **CLI:** define custom agents in `.claude/agents/<name>.md` · **In-session:** use `/fork <directive>` to delegate a parallel sub-task without leaving the main conversation
 
 Do NOT parallelize: shared state, overlapping files, sequential dependencies
 

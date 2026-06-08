@@ -95,6 +95,11 @@ Read each skill in `.claude/skills/*/SKILL.md`:
 - [ ] `add-route` has `description`, `allowed-tools`
 - [ ] No skill references `AGENTS.md` (should reference `CLAUDE.md`)
 - [ ] Skills use `$ARGUMENTS` for dynamic input where applicable
+- [ ] Consider using `when_to_use` for skills that are hard to discover by description alone
+- [ ] Consider `context: fork` for skills with long instructions or side-effect risk (e.g., `/deploy`)
+- [ ] Consider `paths:` for skills that only apply to certain file types
+- [ ] Consider `disallowed-tools` to block specific tools while a skill is active
+- [ ] Consider `model` / `effort` overrides for skills that need Haiku for speed or `xhigh` for complex reasoning
 
 ---
 

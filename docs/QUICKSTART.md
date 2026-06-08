@@ -86,8 +86,7 @@ npm run preview        # Preview production build locally
 | `/plan` | Enter plan mode before a large change |
 | `/model haiku` | Switch to faster/cheaper model for simple tasks |
 | `/model sonnet` | Switch back to default model |
-| `/effort low` | Less reasoning (faster, cheaper) |
-| `/effort high` | More reasoning (slower, for complex problems) |
+| `/effort [level]` | Set reasoning depth: `low`, `medium`, `high`, `xhigh`, `max`. `ultracode` (session-only) adds automatic workflow orchestration on top of `xhigh`. `auto` resets to model default. |
 | `/config` | Picker for model, output style, and other settings |
 | `/memory` | View or edit Claude's persistent memory |
 | `/permissions` | Manage allow/deny/ask rules interactively |
@@ -105,7 +104,15 @@ npm run preview        # Preview production build locally
 | `/context` | Show context window breakdown |
 | `/btw` | Quick aside that doesn't bloat history |
 | `/doctor` | Diagnose skill listing budget overflows and config issues |
-| `/ultrareview` | Multi-agent cloud code review of current diff or a PR number |
+| `/fork <directive>` | Spawn a background subagent with full conversation context; result returns to your session |
+| `/autofix-pr [prompt]` | Watch the current branch's PR; auto-push fixes for CI failures and review comments |
+| `/goal` | Set a completion condition; session works autonomously until it's met |
+| `/reload-skills` | Re-scan skill directories without restarting the session |
+| `/workflows` | View dynamic background workflow runs |
+| `/ultraplan` | Plan-only mode for complex tasks (no execution until you approve) |
+| `/code-review ultra` | Multi-agent cloud code review of current diff or a PR number (`/ultrareview` is an alias) |
+| `/simplify` | Cleanup-only review pass — reuse, simplification, efficiency; auto-applies findings |
+| `/team-onboarding` | Generate a teammate onboarding guide from session history |
 | `/usage` | Show session cost and stats |
 
 ### Custom (this template)
