@@ -7,6 +7,23 @@ Types: `Added` · `Changed` · `Fixed` · `Removed` · `Decision`
 
 ---
 
+## [0.9.0] 2026-06-08 — Drift-check fixes #6 and #7: Node 22, new commands, skill audit checks
+
+### Added
+- QUICKSTART.md: `/fork`, `/autofix-pr`, `/goal`, `/reload-skills`, `/workflows`, `/ultraplan`, `/simplify`, `/team-onboarding` added to built-in commands table
+- `audit-template` Section 7: checks for `when_to_use`, `context: fork`, `paths`, `disallowed-tools`, `model`/`effort` skill frontmatter fields
+
+### Changed
+- `deploy.md` CI workflows: Node.js 20 (EOL 2026-04-30) → Node.js 22 LTS in both GitHub Pages and Linode workflows
+- QUICKSTART.md: `/effort` expanded to include `xhigh`, `max`, `ultracode` (session-only), and `auto`; `/ultrareview` noted as alias for `/code-review ultra`
+- CLAUDE.md Rule 9: `/fork` added as the recommended in-session parallel delegation primitive
+- `package.json`: `lucide-react` ^1.17.0, `tailwind-merge` ^3.6.0, `zustand` ^5.0.14
+
+### Fixed
+- `tsconfig.json`: removed redundant `baseUrl`/`paths` from root coordinator config (canonical copy lives in `tsconfig.app.json`)
+
+---
+
 ## [0.8.0] 2026-05-21 — Sync command, rules starters, Supabase in setup, stack flexibility
 
 ### Added

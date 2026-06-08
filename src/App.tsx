@@ -33,6 +33,24 @@ const setupSteps = [
 
 const changelog = [
   {
+    version: '0.9.0',
+    date: '2026-06-08',
+    added: [
+      'QUICKSTART.md: /fork, /autofix-pr, /goal, /reload-skills, /workflows, /ultraplan, /simplify, /team-onboarding',
+      'audit-template Section 7: when_to_use, context:fork, paths, disallowed-tools, model/effort skill checks',
+    ],
+    changed: [
+      'deploy.md CI: Node.js 20 (EOL) → Node.js 22 LTS in GitHub Pages and Linode workflows',
+      '/effort docs: xhigh, max, ultracode, auto levels added; /ultrareview noted as alias',
+      'CLAUDE.md Rule 9: /fork added as in-session parallel delegation primitive',
+      'lucide-react ^1.17.0, tailwind-merge ^3.6.0, zustand ^5.0.14',
+    ],
+    fixed: [
+      'tsconfig.json: redundant baseUrl/paths removed from root coordinator config',
+    ],
+    removed: [],
+  },
+  {
     version: '0.8.0',
     date: '2026-05-21',
     added: [
