@@ -3,7 +3,7 @@
 ## 1. Clone the template
 
 ```bash
-degit YOUR_USER/vibecoding-template my-app
+npx degit kjarisk/vibeTemplate my-app
 cd my-app
 npm i
 ```
@@ -86,6 +86,7 @@ npm run preview        # Preview production build locally
 | `/plan` | Enter plan mode before a large change |
 | `/model haiku` | Switch to faster/cheaper model for simple tasks |
 | `/model sonnet` | Switch back to default model |
+| `/fast` | Toggle faster Claude Opus responses (higher cost; availability varies) |
 | `/effort [level]` | Set reasoning depth: `low`, `medium`, `high`, `xhigh`, `max`. `ultracode` (session-only) adds automatic workflow orchestration on top of `xhigh`. `auto` resets to model default. |
 | `/config` | Picker for model, output style, and other settings |
 | `/memory` | View or edit Claude's persistent memory |
@@ -94,6 +95,7 @@ npm run preview        # Preview production build locally
 | `/mcp` | Manage MCP server connections |
 | `/agents` | Open subagent manager |
 | `/skills` | Browse skills, toggle visibility with `Space` (saved to `settings.local.json`) |
+| `/skill-doctor` | Report skill context costs and usage (v2.1.252+; feature-flag fetching required) |
 | `/hooks` | Inspect all configured hooks and their sources |
 | `/run` | Launch and drive the app to confirm a change works in the real app |
 | `/verify` | Confirm a change works by observing behavior (without falling back to tests) |
@@ -102,8 +104,9 @@ npm run preview        # Preview production build locally
 | `/background` | Detach session to run as a background agent |
 | `/schedule` | Create a cloud routine that runs on a schedule or GitHub event |
 | `/context` | Show context window breakdown |
+| `/desktop` | Continue this session in Claude Code Desktop (Claude subscription; macOS or x64 Windows) |
 | `/btw` | Quick aside that doesn't bloat history |
-| `/doctor` | Diagnose skill listing budget overflows and config issues |
+| `/doctor [prompt-audit [path]]` | Check installation and configuration; `prompt-audit` checks instructions for outdated or conflicting guidance (v2.1.283+) |
 | `/fork <directive>` | Spawn a background subagent with full conversation context; result returns to your session |
 | `/autofix-pr [prompt]` | Watch the current branch's PR; auto-push fixes for CI failures and review comments |
 | `/goal` | Set a completion condition; session works autonomously until it's met |
