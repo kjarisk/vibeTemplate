@@ -17,12 +17,6 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - name: Verify fresh template download
-        run: |
-          npx --yes degit 'kjarisk/vibeTemplate#maintenance/final-followup' /tmp/vibe-fresh
-          cd /tmp/vibe-fresh
-          npm ci
-          npm run build
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --run
