@@ -182,7 +182,10 @@ const customCommands = [
   { cmd: '/test', desc: 'Tests with coverage' },
   { cmd: '/review', desc: 'Code quality + scope check' },
   { cmd: '/deploy', desc: 'Guided deployment setup' },
-  { cmd: '/setup-skills', desc: 'Review optional skills and documentation tools' },
+  {
+    cmd: '/setup-skills',
+    desc: 'Review optional skills and documentation tools',
+  },
   {
     cmd: '/generate-visual-direction',
     desc: 'Extract design brief from images',
@@ -234,7 +237,8 @@ function App() {
           </h1>
           <p className="max-w-md text-base text-muted-foreground leading-relaxed">
             A guardrailed React starter for AI-assisted development. Scope lock,
-            vertical slices, optional skills, and a reviewed deployment workflow.
+            vertical slices, optional skills, and a reviewed deployment
+            workflow.
           </p>
         </div>
 
