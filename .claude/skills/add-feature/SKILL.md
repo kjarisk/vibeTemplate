@@ -39,7 +39,7 @@ export interface Example {
 
 ### `api/` directory
 
-- Create directory with a starter query hook file:
+- Create a query hook only when a real data source and response contract are known. Never represent an unfinished request as a successful empty result. Example structure (replace the placeholder with an actual implementation before using):
 
 ```ts
 // src/features/<name>/api/use-<name>-query.ts
@@ -49,8 +49,7 @@ export function use<Name>Query() {
   return useQuery({
     queryKey: ['<name>'],
     queryFn: async () => {
-      // TODO: implement fetch
-      return []
+      throw new Error('Not implemented: connect a real data source')
     },
   })
 }

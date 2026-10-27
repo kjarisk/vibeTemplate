@@ -29,7 +29,7 @@ Help add UI components to the project, either from shadcn/ui or as custom reusab
 - `label`, `menubar`, `navigation-menu`, `pagination`, `popover`
 - `progress`, `radio-group`, `scroll-area`, `select`, `separator`
 - `sheet`, `skeleton`, `slider`, `switch`, `table`, `tabs`
-- `textarea`, `toast`, `toggle`, `tooltip`
+- `textarea`, `toggle`, `tooltip`
 
 ## For custom reusable components
 

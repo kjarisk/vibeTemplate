@@ -18,7 +18,7 @@ Treat them accordingly during analysis — moodboard informs tone and aesthetic,
 
 2. **Read all images**
    - Read every image file found (use the Read tool — it supports image attachments).
-   - If there are many images, read them all in parallel.
+   - If there are many images, select a representative set with the user; avoid unnecessary parallel work.
 
 3. **Analyse and synthesise**
    - Extract the following from the images:
@@ -68,5 +68,5 @@ Treat them accordingly during analysis — moodboard informs tone and aesthetic,
 ## Notes
 
 - Run once at project start (after dropping images in) and re-run whenever the visual direction changes significantly.
-- `docs/visual-direction.md` is listed in CLAUDE.md — it will be checked every session.
+- Read `docs/visual-direction.md` when making relevant visual decisions.
 - Do NOT modify existing source images. Only write `docs/visual-direction.md`.

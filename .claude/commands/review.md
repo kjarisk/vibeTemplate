@@ -23,12 +23,12 @@ Check for these issues:
 - Are files in the correct directories per CLAUDE.md rules?
 - Are feature-specific components inside their feature slice, not in shared `src/components/`?
 - Is server state using TanStack Query (not raw fetch/useEffect)?
-- Is UI state using Zustand (not prop drilling or React context for complex state)?
+- Is state kept local when practical, with props, context, or Zustand chosen for the need?
 
 **React 19:**
 
-- Is `forwardRef` being used? (Should be replaced with `ref` as prop)
-- Are there useEffect + useState patterns for async data? (Consider `use()` hook)
+- Are ref patterns compatible with the component and supported React versions?
+- Is server data handled consistently with TanStack Query? If `use()` reads a promise, is it cached with appropriate Suspense and error boundaries?
 
 **Code quality:**
 

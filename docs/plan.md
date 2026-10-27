@@ -9,7 +9,7 @@
 ## Phase 0 — Project setup
 
 - [ ] Run `npm run dev` — confirm template starts at localhost:5173
-- [ ] Run `/setup-skills` — install recommended design skills
+- [ ] Optionally run `/setup-skills` — review documentation tools and skills
 - [ ] Add images to `docs/moodboard/` or `docs/screenshots/`, run `/generate-visual-direction`
 - [ ] Run `/setup` — fill in outline, plan, and decisions
 

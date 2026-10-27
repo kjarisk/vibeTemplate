@@ -18,9 +18,9 @@ const setupSteps = [
   {
     number: '03',
     command: '/setup-skills',
-    title: 'Install design skills',
+    title: 'Review optional skills',
     description:
-      'Install recommended Context7 skills for UI/UX quality: frontend-design, canvas-design, interaction-design.',
+      'Review optional skills and documentation tools. Install only what the project needs.',
   },
   {
     number: '04',
@@ -173,16 +173,19 @@ const stack = [
 
 const customCommands = [
   { cmd: '/setup', desc: 'Interactive project bootstrap' },
-  { cmd: '/audit-template', desc: '12-category health check + scored report' },
-  { cmd: '/bump-version', desc: 'Changelog + tag + push in one pass' },
-  { cmd: '/sync-template', desc: 'Pull harness updates from upstream' },
+  { cmd: '/audit-template', desc: 'Evidence-based project health review' },
+  { cmd: '/bump-version', desc: 'Prepare a version update for review' },
+  { cmd: '/sync-template', desc: 'Review upstream harness updates' },
   { cmd: '/new-feature', desc: 'Scaffold feature slice' },
   { cmd: '/build', desc: 'Type-check + production build' },
   { cmd: '/lint', desc: 'ESLint auto-fix' },
   { cmd: '/test', desc: 'Tests with coverage' },
   { cmd: '/review', desc: 'Code quality + scope check' },
   { cmd: '/deploy', desc: 'Guided deployment setup' },
-  { cmd: '/setup-skills', desc: 'Install Context7 design skills' },
+  {
+    cmd: '/setup-skills',
+    desc: 'Review optional skills and documentation tools',
+  },
   {
     cmd: '/generate-visual-direction',
     desc: 'Extract design brief from images',
@@ -207,7 +210,7 @@ const docs = [
   { file: 'docs/deploy.md', purpose: 'Deployment guide (3 options)' },
   {
     file: 'docs/getting-started.md',
-    purpose: 'First-day walkthrough (deleted by /setup)',
+    purpose: 'First-day walkthrough',
   },
   { file: 'wiki/Learning →', purpose: 'Claude Code features reference' },
   { file: 'wiki/Skills →', purpose: 'Skills system + install commands' },
@@ -234,7 +237,8 @@ function App() {
           </h1>
           <p className="max-w-md text-base text-muted-foreground leading-relaxed">
             A guardrailed React starter for AI-assisted development. Scope lock,
-            vertical slices, design skills, and one-command deployment.
+            vertical slices, optional skills, and a reviewed deployment
+            workflow.
           </p>
         </div>
 
