@@ -6,6 +6,8 @@ A production-ready **React SPA** starter template for AI-assisted development wi
 
 ## Quick start
 
+Use Node.js 24 LTS (see `.nvmrc`) and npm.
+
 ```bash
 npx degit kjarisk/vibeTemplate my-app && cd my-app && npm i
 ```
