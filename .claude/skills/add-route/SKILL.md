@@ -59,11 +59,11 @@ Help add routing to the project using React Router, or add a new route to an exi
    }
    ```
 3. Create the page component inside the relevant feature slice at `src/features/<feature>/components/<Page>.tsx`.
-4. Export a default `Component` from the page file for React Router lazy loading.
+4. Export a named `Component` from the page module for React Router's lazy route object (or map its default export explicitly to `Component`).
 
 ## Rules
 
-- Always use lazy loading for route components to enable code splitting.
+- Use lazy loading when it benefits the application; keep small routes simple.
 - Page components live inside their feature slice, not in a top-level `pages/` directory.
 - Do NOT create a separate `src/pages/` directory. Pages are feature components.
 - Update `docs/plan.md` if the new route represents a new flow.
