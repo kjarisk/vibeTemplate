@@ -180,7 +180,7 @@ const customCommands = [
   { cmd: '/build', desc: 'Type-check + production build' },
   { cmd: '/lint', desc: 'ESLint auto-fix' },
   { cmd: '/test', desc: 'Tests with coverage' },
-  { cmd: '/review', desc: 'Code quality + scope check' },
+  { cmd: '/review-changes', desc: 'Code quality + scope check' },
   { cmd: '/deploy', desc: 'Guided deployment setup' },
   {
     cmd: '/setup-skills',
