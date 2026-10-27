@@ -43,7 +43,7 @@ Check:
 - [ ] `settings.json` exists
 - [ ] `settings.json` has `model` field
 - [ ] `settings.json` has `permissions.allow` and `permissions.deny`
-- [ ] `settings.json` has `hooks` with at least one `PostToolUse` hook
+- [ ] Any configured hooks have a clear purpose, avoid unexpected writes, and report failures appropriately
 - [ ] All commands in `.claude/commands/` have `description` frontmatter
 - [ ] All skills in `.claude/skills/` have `description` + `allowed-tools` frontmatter
 - [ ] No commands or skills reference `opencode`, `AGENTS.md`, or `.opencode/`
