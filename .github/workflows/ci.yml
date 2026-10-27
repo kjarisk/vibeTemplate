@@ -17,6 +17,15 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      - name: Test major dependency upgrades
+        run: npm install --save-dev typescript@latest vitest@latest @vitest/coverage-v8@latest @types/node@24
+      - name: Save upgraded manifests
+        uses: actions/upload-artifact@v4
+        with:
+          name: major-upgrade-manifests
+          path: |
+            package.json
+            package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --run
