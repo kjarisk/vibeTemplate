@@ -18,7 +18,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - name: Generate Vitest 5 upgrade
-        run: npm install --save-dev vitest@^5 @vitest/coverage-v8@^5 @types/node@^24
+        run: npm install --save-dev vitest@^5 @vitest/coverage-v8@^5 @types/node@^24 @testing-library/jest-dom@^7
       - name: Save manifests
         uses: actions/upload-artifact@v4
         with:
