@@ -168,7 +168,7 @@ const stack = [
   { label: 'shadcn/ui', note: 'new-york style, composable primitives' },
   { label: 'TanStack Query v5', note: 'server state: fetch, cache, mutations' },
   { label: 'Zustand v5', note: 'UI state: dialogs, filters, selections' },
-  { label: 'Vitest 4', note: 'unit + integration tests' },
+  { label: 'Vitest 5', note: 'unit + integration tests' },
 ]
 
 const customCommands = [
