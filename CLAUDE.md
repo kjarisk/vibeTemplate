@@ -53,14 +53,14 @@ src/
 - **TanStack Query** for server state (fetch, cache, mutations)
 - **Zustand** for UI state only (dialogs, filters, selections)
 - Every data-driven UI must handle: loading · error · empty states
-- No prop drilling for shared state — use Zustand
+- Keep state local where practical; use props or context for simple sharing and Zustand when shared UI state warrants it
 
 ### 4. React 19 Patterns
 
 - Pass `ref` as prop directly — no `forwardRef` needed
-- Use `use()` hook for async resources instead of useEffect + useState
-- Use `useOptimistic()` for optimistic UI updates
-- Use `useTransition()` for non-urgent state updates
+- Prefer TanStack Query for server data. Use `use()` with a stable cached promise and appropriate Suspense and error boundaries when suitable
+- Consider `useOptimistic()` for optimistic UI updates when it fits the interaction
+- Consider `useTransition()` for non-urgent state updates when useful
 
 ### 5. TypeScript
 
@@ -73,7 +73,7 @@ src/
 - **Package manager:** `npm` only — no bun, pnpm, or yarn
 - Tests: Vitest + Testing Library, behavior-based, critical flows covered
 - Keyboard accessibility required: focusable elements, labels, focus management in dialogs
-- Run `npm run lint:fix` before checkpoint commits
+- Before checkpoint commits, run `npm run lint`, `npm test -- --run`, and `npm run build`; use `npm run lint:fix` intentionally when fixes are needed
 
 ### 7. Commits & Checkpoints
 
@@ -130,7 +130,7 @@ Values: `"on"` (default) · `"name-only"` (shows name, hides description) · `"u
 1. **When user asks for next task:** read `docs/outline.md` + `docs/plan.md`, propose the next unchecked item
 2. **Before coding:** cite the exact outline bullet this supports
 3. **Implement** — no unrelated changes, no unlisted features
-4. **Verify:** run `/lint` and `/build`
+4. **Verify:** run lint, tests once, and build; review changes before committing
 5. **Update:** check off `docs/plan.md` and `docs/outline.md` items
 6. **Commit:** suggest a checkpoint message
 
