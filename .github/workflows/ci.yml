@@ -17,10 +17,20 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      - name: Generate Vitest 5 upgrade
+        run: npm install --save-dev vitest@^5 @vitest/coverage-v8@^5 @types/node@^24
+      - name: Save manifests
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest5-manifests
+          path: |
+            package.json
+            package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --run
       - run: npm run build
+      - run: npm run test:coverage
       - name: Report dependency advisories
         run: npm audit --audit-level=high
         continue-on-error: true
