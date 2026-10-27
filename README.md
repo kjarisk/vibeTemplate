@@ -14,7 +14,7 @@ npx degit kjarisk/vibeTemplate my-app && cd my-app && npm ci
 
 Then open Claude Code and run `/setup` — it will guide you through defining your project scope, deployment target, and optional features.
 
-> Reference docs: [wiki](https://github.com/kjarisk/vibeTemplate/wiki)
+> Current guides: [working with the template](docs/working-with-ai.md), [deployment](docs/deploy.md), and [maintenance](docs/maintenance.md). The wiki may contain historical guidance.
 
 ## How it works
 
@@ -108,5 +108,6 @@ Three options covered in `docs/deploy.md` and the `/deploy` command:
 | [docs/prompts.md](docs/prompts.md) | Reusable prompts for common workflows |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Setup + commands cheat sheet |
 | [docs/working-with-ai.md](docs/working-with-ai.md) | Workflow, agents, skills, MCP and scenarios |
+| [docs/maintenance.md](docs/maintenance.md) | Dependency policy and manual acceptance checks |
 | [Wiki: Learning](https://github.com/kjarisk/vibeTemplate/wiki/Learning) | Claude Code features reference |
 | [Wiki: Skills](https://github.com/kjarisk/vibeTemplate/wiki/Skills) | Skills system + install commands |

@@ -22,6 +22,20 @@ jobs:
       - run: npm test -- --run
       - run: npm run build
       - run: npm run test:coverage
+      - name: Check local development server
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/vibe-vite.log 2>&1 &
+          vite_pid=$!
+          trap 'kill "$vite_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:5173/ > /tmp/vibe-index.html; then
+              grep -q '<div id="root"></div>' /tmp/vibe-index.html
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/vibe-vite.log
+          exit 1
       - name: Report dependency advisories
         run: npm audit --audit-level=high
         continue-on-error: true
