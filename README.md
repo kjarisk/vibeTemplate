@@ -1,6 +1,6 @@
 # Vibecoding Template (React + Vite)
 
-A production-ready **React SPA** starter template for AI-assisted development with Claude Code. Built with strong guardrails, vertical slice architecture, and everything you need to ship fast without losing control of scope.
+An opinionated **React SPA** starter template for AI-assisted development with Claude Code. Built with strong guardrails, vertical slice architecture, and everything you need to ship fast without losing control of scope.
 
 > **This template is for React SPAs** (Vite + TypeScript + Tailwind + shadcn/ui). If you need SSR, a backend API, or a different stack, the harness structure still applies but the default stack will need updating after `/setup`.
 
@@ -9,7 +9,7 @@ A production-ready **React SPA** starter template for AI-assisted development wi
 Use Node.js 24 LTS (see `.nvmrc`) and npm.
 
 ```bash
-npx degit kjarisk/vibeTemplate my-app && cd my-app && npm i
+npx degit kjarisk/vibeTemplate my-app && cd my-app && npm ci
 ```
 
 Then open Claude Code and run `/setup` — it will guide you through defining your project scope, deployment target, and optional features.
@@ -20,7 +20,7 @@ Then open Claude Code and run `/setup` — it will guide you through defining yo
 
 1. **Define scope** — run `/setup` to fill `docs/outline.md` (scope lock) and `docs/plan.md` (vertical slices)
 2. **Add visual references** — drop screenshots into `docs/moodboard/` or `docs/screenshots/`, run `/generate-visual-direction`
-3. **Install skills** — run `/setup-skills` to add recommended design skills
+3. **Optional skills** — run `/setup-skills` to review optional documentation and design tools
 4. **Build** — ask Claude: *"Read docs/outline.md and propose the next smallest task"*
 5. **Iterate** — implement one task, run tests, commit, repeat
 
@@ -61,17 +61,18 @@ docs/
   moodboard/          # drop color/typography reference images here
   screenshots/        # drop UI inspiration images here
 .claude/
-  settings.json       # model, permissions, hooks
+  settings.json       # permission defaults
   commands/           # custom slash commands
   skills/             # project-specific skills
+  agents/             # optional reviewers
   rules/              # path-scoped rules (load only for matching files)
 CLAUDE.md             # agent rules — loaded automatically by Claude Code
-.mcp.json             # MCP server config (Context7, GitHub)
+.mcp.json             # optional read-only GitHub MCP server
 ```
 
 ## Available commands
 
-See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for the full list of built-in and custom commands.
+See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for project commands and [`docs/working-with-ai.md`](docs/working-with-ai.md) for the daily workflow, agents, integrations and examples.
 
 ## npm scripts
 
@@ -106,5 +107,6 @@ Three options covered in `docs/deploy.md` and the `/deploy` command:
 | [docs/deploy.md](docs/deploy.md) | Deployment guide (3 options) |
 | [docs/prompts.md](docs/prompts.md) | Reusable prompts for common workflows |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Setup + commands cheat sheet |
+| [docs/working-with-ai.md](docs/working-with-ai.md) | Workflow, agents, skills, MCP and scenarios |
 | [Wiki: Learning](https://github.com/kjarisk/vibeTemplate/wiki/Learning) | Claude Code features reference |
 | [Wiki: Skills](https://github.com/kjarisk/vibeTemplate/wiki/Skills) | Skills system + install commands |

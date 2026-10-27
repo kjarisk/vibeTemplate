@@ -27,7 +27,7 @@ Check for these issues:
 
 **React 19:**
 
-- Is `forwardRef` being used? (Should be replaced with `ref` as prop)
+- Are ref patterns compatible with the component and supported React versions?
 - Is server data handled consistently with TanStack Query? If `use()` reads a promise, is it cached with appropriate Suspense and error boundaries?
 
 **Code quality:**

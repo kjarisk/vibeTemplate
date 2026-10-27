@@ -1,39 +1,16 @@
 ---
-description: Check and install recommended skills for this project
+description: Review optional skill sources and set up documentation lookup for Claude Code.
 disable-model-invocation: true
 ---
 
-Check whether recommended skills are installed and offer to install them.
+List the project skills in `.claude/skills/` and explain what they do. External skills are optional and can contain instructions or execute tools; inspect the source, license, permissions and data handling before installing. Do not install automatically.
 
-## Steps
+For current library documentation, offer the official Context7 setup for Claude Code:
 
-1. Run `npx ctx7 skills list` to see what is currently installed in `.agents/skills/`.
+```bash
+npx ctx7 setup --claude --project
+```
 
-2. Compare the output against the recommended skills from the [Skills wiki](https://github.com/kjarisk/vibeTemplate/wiki/Skills):
-   - `frontend-design` (from `/anthropics/skills`)
-   - `canvas-design` (from `/anthropics/skills`)
-   - `interaction-design` (from `/wshobson/agents`)
+The interactive setup offers CLI + skills or MCP and may require authentication. Review what it changes, use only if permitted by project policy, then verify with Claude's `/skills` or `/mcp`. Claude-specific project skills are under `.claude/skills/`; `.agents/skills/` is a universal location used by other tools and is not assumed to be auto-discovered by Claude Code. Avoid exposing secrets or client data to third-party services without approval.
 
-3. If `.agents/skills/` is **empty or missing** all recommended skills:
-   - Tell the user which skills are not installed.
-   - Ask: "Install all recommended skills now? (Yes / No / Let me pick)"
-   - If Yes: run each install command (ctx7 installs one at a time):
-     ```bash
-     npx ctx7 skills install /anthropics/skills frontend-design --universal -y
-     npx ctx7 skills install /anthropics/skills canvas-design --universal -y
-     npx ctx7 skills install /wshobson/agents interaction-design --universal -y
-     ```
-   - If "Let me pick": list each skill with a one-line description and ask which to install.
-   - If No: skip and continue.
-
-4. If some skills are already installed, only offer to install the missing ones.
-
-5. After install (or skip), confirm the final list of installed skills to the user.
-
-6. Remind the user that project-specific skills (`add-feature`, `add-component`, `add-route`) in `.claude/skills/` are always available and require no installation.
-
-## Notes
-
-- `.agents/skills/` is gitignored — each developer installs skills locally.
-- Skills follow the [Agent Skills](https://agentskills.io) open standard.
-- Full reference: https://github.com/kjarisk/vibeTemplate/wiki/Skills
+For other skills, use the current provider's instructions, review the actual skill before trusting it, and explain whether it is project-shared or user-local. Report any setup that could not be verified.

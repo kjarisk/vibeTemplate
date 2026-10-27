@@ -1,141 +1,28 @@
-# Claude Code Instructions
+# Project instructions
 
-This is a vibecoding template for AI-assisted React development with Claude Code.
+This repository starts as a React + Vite + TypeScript single-page application. Follow the user's explicit instructions and the project's policies. Do not assume a backend, authentication, private hosting, or production readiness exists.
 
-## New project? Run `/setup` first
+## Working agreement
 
-If `docs/outline.md` still contains "_Run `/setup` to define this._", the project is unconfigured. **Stop and tell the user to run `/setup` before doing anything else.**
+- For a new project, offer `/setup`; read `docs/outline.md` and `docs/plan.md` when planning or implementing. Treat the outline as the agreed scope. If the user requests a change, discuss its effect and update the scope rather than silently expanding it.
+- Deliver small end-to-end slices. State assumptions and acceptance criteria. Record meaningful decisions in `docs/decisions.md` and mark work complete only when verified.
+- Inspect existing code before changing it. Keep changes focused. Ask before adding dependencies or changing deployment, authentication, data persistence, or security boundaries.
+- Preserve secrets and customer data. Never put secrets in frontend code, Git, prompts or screenshots. Use mock or approved data for prototypes; enforce access control on the server for real data.
+- Use current official docs when behavior is uncertain. MCP servers and downloaded skills are optional: inspect their source, permissions, and data handling before enabling them.
+- Use one main workstream by default. Delegate independent, clearly bounded tasks only when useful; avoid overlapping edits, excessive parallelism, and unnecessary context switching. Consolidate and review every result.
 
-## Session start (read on demand, not upfront)
+## Stack and architecture
 
-Do NOT pre-read all docs at the start of every session. Read lazily:
+- Default: React, Vite, TypeScript, Tailwind, shadcn/ui, TanStack Query, Zustand, Vitest. Adapt the stack deliberately; it is not a backend or native-mobile scaffold.
+- Group feature-specific code in `src/features/<name>`; share only when useful. Prefer local state, props or context for simple needs; use Zustand when shared UI state warrants it. Use TanStack Query for server-state caching where appropriate.
+- For async UI, provide loading, error and empty states as applicable. If using React `use()` with promises, use a stable cached promise with suitable Suspense and error boundaries.
+- Use strict types; avoid unjustified `any` and unsafe casts. Consider keyboard use, semantic HTML, labels, contrast, focus, responsive layout and reduced motion.
+- Do not run broad auto-fixes silently. Review the diff before committing. Run checks appropriate to the change; for code, normally `npm run lint`, `npm test -- --run`, and `npm run build`. Report failures and unrun checks.
 
-- **When about to implement anything:** read `docs/outline.md` to verify it's in scope
-- **When planning next task:** read `docs/plan.md` to find the next unchecked item
-- **When making UI decisions:** read `docs/visual-direction.md` only if it has content (check file size first — skip if it contains "No visual direction generated")
-- **Skills:** project skills in `.claude/skills/` load natively. Third-party design skills in `.agents/skills/` are not auto-discovered — query them via the Context7 MCP server (`ctx7`/`query-docs`), don't read the files directly
+## Reference
 
----
-
-## Rules
-
-### 1. Scope (NON-NEGOTIABLE)
-
-- Only build what is in `docs/outline.md`. If not there, STOP and ask.
-- Propose the single smallest next task only. No multi-feature PRs.
-- Before coding: cite which section + bullet in `docs/outline.md` this supports.
-- No new libraries without asking first.
-
-### 2. Tech Stack
-
-**Default:** React + Vite + TypeScript · Tailwind CSS (v4) · TanStack Query · Zustand · shadcn/ui
-
-**Optional (ask first):** React Router · Zod · React Hook Form · Sonner
-
-**Discuss before choosing:** Next.js (if SSR is genuinely needed) · Redux (Zustand covers most cases) · alternative UI libraries — update this file if the project type warrants a different choice
-
-### 3. Architecture
-
-```
-src/
-  components/ui/        # shadcn/ui (do not modify without reason)
-  components/           # shared reusable UI
-  features/<name>/      # feature slices
-    components/
-    api/                # useXQuery, useYMutation hooks
-    state/              # Zustand store (UI state only)
-    types.ts
-    index.ts
-  hooks/                # shared custom hooks
-  lib/                  # utilities
-```
-
-- **TanStack Query** for server state (fetch, cache, mutations)
-- **Zustand** for UI state only (dialogs, filters, selections)
-- Every data-driven UI must handle: loading · error · empty states
-- Keep state local where practical; use props or context for simple sharing and Zustand when shared UI state warrants it
-
-### 4. React 19 Patterns
-
-- Pass `ref` as prop directly — no `forwardRef` needed
-- Prefer TanStack Query for server data. Use `use()` with a stable cached promise and appropriate Suspense and error boundaries when suitable
-- Consider `useOptimistic()` for optimistic UI updates when it fits the interaction
-- Consider `useTransition()` for non-urgent state updates when useful
-
-### 5. TypeScript
-
-- `strict: true` is enabled — fix TypeScript errors by correcting types, NOT by casting with `as`
-- No `any` types without justification
-- No `as unknown as X` workarounds
-
-### 6. Quality
-
-- **Package manager:** `npm` only — no bun, pnpm, or yarn
-- Tests: Vitest + Testing Library, behavior-based, critical flows covered
-- Keyboard accessibility required: focusable elements, labels, focus management in dialogs
-- Before checkpoint commits, run `npm run lint`, `npm test -- --run`, and `npm run build`; use `npm run lint:fix` intentionally when fixes are needed
-
-### 7. Commits & Checkpoints
-
-- Commit after each small, working improvement
-- Message style: `feat:` `fix:` `chore:` `refactor:` `test:`
-- Do not leave main in a failing state
-
-### 8. Plan & Outline Tracking (NON-NEGOTIABLE)
-
-- After every completed task: update `docs/plan.md` (check off completed item)
-- After every completed task: update `docs/outline.md` (check off DoD items)
-- If a mid-session task is added that's not in the plan, add it to `docs/plan.md` first
-
-### 9. Parallel Execution
-
-Use sub-agents for tasks with no shared state:
-- Independent feature slices
-- Parallel lint + test + build verification
-- Test generation for multiple components
-
-**SDK:** use the `Agent` tool · **CLI:** define custom agents in `.claude/agents/<name>.md` · **In-session:** use `/fork <directive>` to delegate a parallel sub-task without leaving the main conversation
-
-Do NOT parallelize: shared state, overlapping files, sequential dependencies
-
-### 10. Deployment
-
-Guide lives in `docs/deploy.md` — options: GitHub Pages (free), Linode VPS (rsync+SSH+Nginx), Vercel (optional). Run `/deploy` for AI-guided setup.
-
-### 11. Skills
-
-- Project skills: `.claude/skills/` — committed, loaded natively by Claude Code at session start
-- Third-party skills: `.agents/skills/` — gitignored, installed locally; surfaced via the Context7 MCP server (not auto-discovered by Claude Code itself)
-- Path-scoped rules: `.claude/rules/` — starter files `api.md` and `components.md` included; add more per domain, they load only when Claude works with matching files
-- Personal overrides: `CLAUDE.local.md` (gitignored) — per-machine notes, sandbox URLs, personal preferences
-- Run `/setup-skills` for interactive install · full reference at https://github.com/kjarisk/vibeTemplate/wiki/Skills
-
-To control which skills appear in context (saves token budget), use `skillOverrides` in `settings.json`:
-
-```json
-{
-  "skillOverrides": {
-    "deploy": "off",
-    "generate-visual-direction": "name-only"
-  }
-}
-```
-
-Values: `"on"` (default) · `"name-only"` (shows name, hides description) · `"user-invocable-only"` · `"off"`
-
----
-
-## Workflow
-
-1. **When user asks for next task:** read `docs/outline.md` + `docs/plan.md`, propose the next unchecked item
-2. **Before coding:** cite the exact outline bullet this supports
-3. **Implement** — no unrelated changes, no unlisted features
-4. **Verify:** run lint, tests once, and build; review changes before committing
-5. **Update:** check off `docs/plan.md` and `docs/outline.md` items
-6. **Commit:** suggest a checkpoint message
-
-Do NOT read all docs speculatively — only read what the current task requires.
-
-## Commands
-
-See `docs/QUICKSTART.md` for the full command list.
+- `docs/QUICKSTART.md`: commands and first steps.
+- `docs/working-with-ai.md`: daily workflow, skills, agents and safe collaboration.
+- `docs/deploy.md`: hosting and production checklist.
+- `.claude/skills/`: project skills; `.claude/agents/`: optional bounded reviewers; `.claude/rules/`: path-scoped conventions.
+- Read `docs/visual-direction.md` when making visual decisions, if it contains a project brief.

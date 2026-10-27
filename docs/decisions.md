@@ -2,7 +2,7 @@
 
 Keep this short: what we decided, and why.
 
-> This is the **template-level** decisions log. When you run `/setup` on a new project, your project-specific decisions get prepended here automatically.
+> This is the **template-level** decisions log. When you run `/setup` on a new project, your preserve or adapt this history and add project-specific decisions after reviewing it. Historical entries below describe past decisions and may no longer match current configuration.
 
 ---
 
