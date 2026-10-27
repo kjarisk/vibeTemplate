@@ -1,5 +1,6 @@
 ---
 description: Read moodboard and screenshot images and write docs/visual-direction.md
+disable-model-invocation: true
 ---
 
 Read the moodboard and screenshot images once, then write a `docs/visual-direction.md` summary that the agent can reference going forward — without re-reading images every session.

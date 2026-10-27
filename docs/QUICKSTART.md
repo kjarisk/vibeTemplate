@@ -33,7 +33,7 @@ Start Claude Code in the project and run `/setup`. Review the scope and plan, th
 | `/generate-visual-direction` | Summarize permitted visual references |
 | `/new-feature <name>` / `/add-feature <name>` | Plan or scaffold a feature slice |
 | `/add-component <name>` / `/add-route <name>` | Add a UI component or routing when needed |
-| `/review` / `/audit-template` | Review the changes or audit project health |
+| `/review-changes` / `/audit-template` | Review the changes or audit project health |
 | `/lint` / `/test` / `/build` | Run project checks |
 | `/deploy` | Plan a deployment |
 | `/sync-template` | Review upstream changes without overwriting project work |
