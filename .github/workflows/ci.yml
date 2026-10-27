@@ -17,17 +17,6 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - name: Evaluate dependency floors
-        run: |
-          npm install react@^19 react-dom@^19 lucide-react@^1
-          npm install --save-dev shadcn@^4 typescript@^6 typescript-eslint@^8
-      - name: Save reviewed manifests
-        uses: actions/upload-artifact@v4
-        with:
-          name: updated-manifests
-          path: |
-            package.json
-            package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --run
