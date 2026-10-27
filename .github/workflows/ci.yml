@@ -21,3 +21,6 @@ jobs:
       - run: npm run lint
       - run: npm test -- --run
       - run: npm run build
+      - name: Report dependency advisories
+        run: npm audit --audit-level=high
+        continue-on-error: true
